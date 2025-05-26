@@ -23,7 +23,7 @@ namespace Curs_Radaeva
         {
             InitializeComponent();
             this.FormClosed += Admin_FormClosed;
-
+            _form1 = form1;
         }
         private void Admin_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -34,36 +34,43 @@ namespace Curs_Radaeva
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Admins.ToList();
+            dataGridView1.Columns[4].Visible = false;
         }
 
         private void btAdmin_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Admins.ToList();
+            dataGridView1.Columns[4].Visible = false;
+            activeEntity = ActiveEntity.Admin;
         }
 
         private void Avtorizacia_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Authorizations.ToList();
+            activeEntity = ActiveEntity.Avtorizacium;
         }
 
         private void Client_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Clients.ToList();
+            activeEntity = ActiveEntity.Client;
         }
 
         private void Drivers_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Drivers.ToList();
+            activeEntity = ActiveEntity.Driver;
         }
 
         private void Role_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Roles.ToList();
+            activeEntity = ActiveEntity.Role;
         }
 
         private void Routes_Click(object sender, EventArgs e)
@@ -78,18 +85,21 @@ namespace Curs_Radaeva
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.StatusDrivers.ToList();
+            activeEntity = ActiveEntity.StatusDriver;
         }
 
         private void TimeTable_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.TimeTables.ToList();
+            activeEntity = ActiveEntity.TimeTable;
         }
 
         private void Transport_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Transports.ToList();
+            activeEntity = ActiveEntity.Transport;
         }
 
         private void UpdateInfo()
@@ -494,7 +504,7 @@ namespace Curs_Radaeva
                 }
             }
         }
-        
+
 
         private void bt_edit_Click(object sender, EventArgs e)
         {
@@ -507,7 +517,7 @@ namespace Curs_Radaeva
                     {
                         IdAdmin = ((int)dataGridView1.SelectedRows[0].Cells[0].Value),
                         NameAdmin = ((string)dataGridView1.SelectedRows[0].Cells[1].Value),
-                        TelAdmin = (int)dataGridView1.SelectedRows[0].Cells[2].Value,
+                        TelAdmin = (long)dataGridView1.SelectedRows[0].Cells[2].Value,
                         IdAuthorization = (int)dataGridView1.SelectedRows[0].Cells[3].Value,
                     };
                     this.Hide();
@@ -557,11 +567,11 @@ namespace Curs_Radaeva
             {
                 try
                 {
-                    var performanceReport = new Client
+                    var Client = new Client
                     {
                         IdClient = (int)dataGridView1.SelectedRows[0].Cells[0].Value,
                         NameClient = (string)dataGridView1.SelectedRows[0].Cells[1].Value,
-                        TelClient = (int)dataGridView1.SelectedRows[0].Cells[2].Value,
+                        TelClient = (long)dataGridView1.SelectedRows[0].Cells[2].Value,
                         DataRegisteredClient = (DateOnly)dataGridView1.SelectedRows[0].Cells[3].Value,
                         IdAvtorizacia = (int)dataGridView1.SelectedRows[0].Cells[4].Value,
                     };
@@ -579,6 +589,7 @@ namespace Curs_Radaeva
                 catch (Exception ex)
                 {
                     MessageBox.Show("Не получилось изменить: " + ex.Message);
+                    ExceptionToFile.SaveExceptionToDesktop(ex);
                 }
             }
             if (activeEntity == ActiveEntity.Driver)
@@ -590,7 +601,7 @@ namespace Curs_Radaeva
                         IdDrivers = (int)dataGridView1.SelectedRows[0].Cells[0].Value,
                         NameDrivers = (string)dataGridView1.SelectedRows[0].Cells[1].Value,
                         LicenseNumberDrivers = (int)dataGridView1.SelectedRows[0].Cells[2].Value,
-                        TelDrivers = (int)dataGridView1.SelectedRows[0].Cells[3].Value,
+                        TelDrivers = (long)dataGridView1.SelectedRows[0].Cells[3].Value,
                         IdStatusDrivers = (int)dataGridView1.SelectedRows[0].Cells[4].Value,
                         IdAuthorization = (int)dataGridView1.SelectedRows[0].Cells[5].Value,
                     };
@@ -728,7 +739,7 @@ namespace Curs_Radaeva
                         HeightTransport = (Decimal)dataGridView1.SelectedRows[0].Cells[2].Value,
                         LongTransport = (Decimal)dataGridView1.SelectedRows[0].Cells[3].Value,
                         WidthTransport = (Decimal)dataGridView1.SelectedRows[0].Cells[4].Value,
-                        MaxSpeedTransport = (int)dataGridView1.SelectedRows[0].Cells[5].Value,
+                        MaxSpeedTransport = (long)dataGridView1.SelectedRows[0].Cells[5].Value,
                     };
                     this.Hide();
                     var editing = new Redact(ActiveEntity.Transport, Transport);
@@ -1021,6 +1032,11 @@ namespace Curs_Radaeva
         private void Admin_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void btExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

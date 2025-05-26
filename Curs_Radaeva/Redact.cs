@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Curs_Radaeva
@@ -92,6 +93,8 @@ namespace Curs_Radaeva
         public Redact(ActiveEntity activeEntity, object entityData)
         {
             InitializeComponent();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "hh:mm:ss";
             x = activeEntity;
             ConfigureForm(entityData);
             isError = IsError.N;
@@ -137,6 +140,17 @@ namespace Curs_Radaeva
             data2.DataBindings.Add("Text", Admin, nameof(Admin.NameAdmin));
             data3.DataBindings.Add("Text", Admin, nameof(Admin.TelAdmin));
             data4.DataBindings.Add("Text", Admin, nameof(Admin.IdAuthorization));
+            text1.Text = "IdAdmin";
+            text2.Text = "NameAdmin";
+            text3.Text = "TelAdmin";
+            text4.Text = "IdAuthorization";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
+            text5.Visible = false;
+            text6.Visible = false;
+            data5.Visible = false;
+            data6.Visible = false;
         }
 
         private void BindAuthorization(Authorization Authorization)
@@ -145,6 +159,17 @@ namespace Curs_Radaeva
             data2.DataBindings.Add("Text", Authorization, nameof(Authorization.Login));
             data3.DataBindings.Add("Text", Authorization, nameof(Authorization.Password));
             data4.DataBindings.Add("Text", Authorization, nameof(Authorization.IdRole));
+            text1.Text = "IdAuthorization";
+            text2.Text = "Login";
+            text3.Text = "Password";
+            text4.Text = "IdRole";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
+            text5.Visible = false;
+            text6.Visible = false;
+            data5.Visible = false;
+            data6.Visible = false;
         }
         private void BindClient(Client Client)
         {
@@ -153,6 +178,17 @@ namespace Curs_Radaeva
             data3.DataBindings.Add("Text", Client, nameof(Client.TelClient));
             dateTimePicker1.DataBindings.Add("Text", Client, nameof(Client.DataRegisteredClient));
             data5.DataBindings.Add("Text", Client, nameof(Client.IdAvtorizacia));
+            text1.Text = "IdClient";
+            text2.Text = "NameClient";
+            text3.Text = "TelClient";
+            text4.Text = "DataRegisteredClient";
+            text5.Text = "IdAvtorizacia";
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
+            data4.Visible = false;
+            data6.Visible = false;
+            text6.Visible = false;
         }
         private void BindDriver(Driver Driver)
         {
@@ -162,11 +198,33 @@ namespace Curs_Radaeva
             data4.DataBindings.Add("Text", Driver, nameof(Driver.TelDrivers));
             data5.DataBindings.Add("Text", Driver, nameof(Driver.IdStatusDrivers));
             data6.DataBindings.Add("Text", Driver, nameof(Driver.IdAuthorization));
+            text1.Text = "IdDrivers";
+            text2.Text = "NameDrivers";
+            text3.Text = "LicenseNumberDrivers";
+            text4.Text = "TelDrivers";
+            text5.Text = "IdStatusDrivers";
+            text6.Text = "IdAuthorization";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
         }
         private void BindRole(Role role)
         {
             data1.DataBindings.Add("Text", role, nameof(role.IdRole));
             data2.DataBindings.Add("Text", role, nameof(role.NameRole));
+            text1.Text = "IdRole";
+            text2.Text = "NameRole";
+            text3.Visible = false;
+            text4.Visible = false;
+            text5.Visible = false;
+            text6.Visible = false;
+            data3.Visible = false;
+            data4.Visible = false;
+            data5.Visible = false;
+            data6.Visible = false;
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
         }
         private void BindRoute(Route route)
         {
@@ -174,12 +232,36 @@ namespace Curs_Radaeva
             data2.DataBindings.Add("Text", route, nameof(route.StartLocationRoutes));
             data3.DataBindings.Add("Text", route, nameof(route.EndLocationRoutes));
             data4.DataBindings.Add("Text", route, nameof(route.DistanceRoutes));
-            data5.DataBindings.Add("Text", route, nameof(route.TravelTimeRoutes));
+            dateTimePicker2.DataBindings.Add("Text", route, nameof(route.TravelTimeRoutes));
+            text1.Text = "IdRoutes";
+            text2.Text = "StartLocationRoutes";
+            text3.Text = "EndLocationRoutes";
+            text4.Text = "DistanceRoutes";
+            text5.Text = "TravelTimeRoutes";
+            dateTimePicker1.Visible = false;
+            dateTimePicker3.Visible = false;
+            dateTimePicker2.CustomFormat = "hh:mm:ss";
+            data5.Visible = false;
+            data6.Visible = false;
+            text6.Visible = false;
         }
         private void BindStatusDriver(StatusDriver statusDriver)
         {
             data1.DataBindings.Add("Text", statusDriver, nameof(statusDriver.IdStatusDrivers));
             data2.DataBindings.Add("Text", statusDriver, nameof(statusDriver.NameStatusDrivers));
+            text1.Text = "IdStatusDrivers";
+            text2.Text = "NameStatusDrivers";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
+            data3.Visible = false;
+            data4.Visible = false;
+            data5.Visible = false;
+            data6.Visible = false;
+            text3.Visible = false;
+            text4.Visible = false;
+            text5.Visible = false;
+            text6.Visible = false;
         }
         private void BindTimeTable(TimeTable TimeTable)
         {
@@ -189,6 +271,15 @@ namespace Curs_Radaeva
             data4.DataBindings.Add("Text", TimeTable, nameof(TimeTable.IdDrivers));
             data5.DataBindings.Add("Text", TimeTable, nameof(TimeTable.DepartureTime));
             data6.DataBindings.Add("Text", TimeTable, nameof(TimeTable.ArrivalTime));
+            text1.Text = "IdTimeTable";
+            text2.Text = "IdRoutes";
+            text3.Text = "IdTransport";
+            text4.Text = "IdDrivers";
+            text5.Text = "DepartureTime";
+            text6.Text = "ArrivalTime";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.CustomFormat = "hh:mm:ss";
+            dateTimePicker3.CustomFormat = "hh:mm:ss";
         }
         private void BindTransport(Transport Transport)
         {
@@ -198,25 +289,36 @@ namespace Curs_Radaeva
             data4.DataBindings.Add("Text", Transport, nameof(Transport.LongTransport));
             data5.DataBindings.Add("Text", Transport, nameof(Transport.WidthTransport));
             data6.DataBindings.Add("Text", Transport, nameof(Transport.MaxSpeedTransport));
+            text1.Text = "IdTransport";
+            text2.Text = "NumberplateTransport";
+            text3.Text = "HeightTransport";
+            text4.Text = "LongTransport";
+            text5.Text = "WidthTransport";
+            text6.Text = "MaxSpeedTransport";
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            dateTimePicker3.Visible = false;
         }
 
         private void save_Click(object sender, EventArgs e)
         {
+            int Count;
             switch (x)
             {
                 case ActiveEntity.Admin:
                     Models.Admin Admin = new();
                     Admin.IdAdmin = Convert.ToInt32(data1.Text);
                     Admin.NameAdmin = data2.Text;
-                    Admin.TelAdmin = Convert.ToInt32(data3.Text);
-                    Admin.IdAuthorization = Convert.ToInt32(data4.Text);
-                    if (Convert.ToInt32(data4.Text) < 1 || Convert.ToInt32(data4.Text) > 2)
+                    Admin.TelAdmin = (long)Convert.ToDouble(data3.Text);
+                    Ispr2525RadaevaVaKursachContext context10 = new();
+                    Count = context10.Roles.Count();
+                    if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
                     {
-                        MessageBox.Show("Значение должно быть от 1 до 2", "Ошибка",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                         isError = IsError.Y;
                         break;
                     }
+                    Admin.IdAuthorization = Convert.ToInt32(data4.Text);
                     Ispr2525RadaevaVaKursachContext context = new();
                     if (isEdit == IsEdit.Y)
                         context.Update(Admin);
@@ -229,14 +331,15 @@ namespace Curs_Radaeva
                     Avtorizacium.IdAuthorization = Convert.ToInt32(data1.Text);
                     Avtorizacium.Login = data2.Text;
                     Avtorizacium.Password = data3.Text;
-                    Avtorizacium.IdRole = Convert.ToInt32(data4.Text);
-                    if (Convert.ToInt32(data4.Text) < 1 || Convert.ToInt32(data4.Text) > 3)
+                    Ispr2525RadaevaVaKursachContext context11 = new();
+                    Count = context11.Roles.Count();
+                    if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
                     {
-                        MessageBox.Show("Значение должно быть от 1 до 3", "Ошибка",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("IdRole не может быть меньше нуля или больше:" + Count);
                         isError = IsError.Y;
                         break;
                     }
+                    Avtorizacium.IdRole = Convert.ToInt32(data4.Text);
                     Ispr2525RadaevaVaKursachContext context2 = new();
                     if (isEdit == IsEdit.Y)
                     {
@@ -252,16 +355,17 @@ namespace Curs_Radaeva
                     Client Client = new();
                     Client.IdClient = Convert.ToInt32(data1.Text);
                     Client.NameClient = data2.Text;
-                    Client.TelClient = Convert.ToInt32(data3.Text);
+                    Client.TelClient = Convert.ToInt64(data3.Text);
                     Client.DataRegisteredClient = DateOnly.FromDateTime(dateTimePicker1.Value);
-                    Client.IdAvtorizacia = Convert.ToInt32(data5.Text);
-                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > 15)
+                    Ispr2525RadaevaVaKursachContext context12 = new();
+                    Count = context12.Authorizations.Count();
+                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
                     {
-                        MessageBox.Show("Значение должно быть от 1 до 15", "Ошибка",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                         isError = IsError.Y;
                         break;
                     }
+                    Client.IdAvtorizacia = Convert.ToInt32(data5.Text);
                     Ispr2525RadaevaVaKursachContext context3 = new();
                     if (isEdit == IsEdit.Y)
                         context3.Update(Client);
@@ -274,23 +378,25 @@ namespace Curs_Radaeva
                     Driver.IdDrivers = Convert.ToInt32(data1.Text);
                     Driver.NameDrivers = data2.Text;
                     Driver.LicenseNumberDrivers = Convert.ToInt32(data3.Text);
-                    Driver.TelDrivers = Convert.ToInt32(data4.Text);
-                    Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
-                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > 2)
+                    Driver.TelDrivers = (long)Convert.ToDouble(data4.Text);
+                    Ispr2525RadaevaVaKursachContext context13 = new();
+                    Count = context13.StatusDrivers.Count();
+                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
                     {
-                        MessageBox.Show("Значение должно быть от 1 до 2", "Ошибка",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("IdStatusDrivers не может быть меньше нуля или больше:" + Count);
+                        isError = IsError.Y;
+                        break;
+                    }
+                    Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
+                    Ispr2525RadaevaVaKursachContext context14 = new();
+                    Count = context14.Authorizations.Count();
+                    if (Convert.ToInt32(data6.Text) < 1 || Convert.ToInt32(data6.Text) > Count)
+                    {
+                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                         isError = IsError.Y;
                         break;
                     }
                     Driver.IdAuthorization = Convert.ToInt32(data6.Text);
-                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data6.Text) > 5)
-                    {
-                        MessageBox.Show("Значение должно быть от 1 до 5", "Ошибка",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        isError = IsError.Y;
-                        break;
-                    }
                     Ispr2525RadaevaVaKursachContext context4 = new();
                     if (isEdit == IsEdit.Y)
                         context4.Update(Driver);
@@ -356,7 +462,7 @@ namespace Curs_Radaeva
                     Transport.HeightTransport = Convert.ToDecimal(data3.Text);
                     Transport.LongTransport = Convert.ToDecimal(data4.Text);
                     Transport.WidthTransport = Convert.ToDecimal(data5.Text);
-                    Transport.MaxSpeedTransport = Convert.ToInt32(data6.Text);
+                    Transport.MaxSpeedTransport = (long)Convert.ToDouble(data6.Text);
                     Ispr2525RadaevaVaKursachContext context9 = new();
                     if (isEdit == IsEdit.Y)
                         context9.Update(Transport);

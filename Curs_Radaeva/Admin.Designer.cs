@@ -44,9 +44,9 @@
             btAdmin = new Button();
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btMin = new Button();
+            btMax = new Button();
+            btExit = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -267,49 +267,52 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlDarkDark;
-            panel3.Controls.Add(button3);
-            panel3.Controls.Add(button2);
-            panel3.Controls.Add(button1);
+            panel3.Controls.Add(btMin);
+            panel3.Controls.Add(btMax);
+            panel3.Controls.Add(btExit);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(800, 35);
             panel3.TabIndex = 2;
             // 
-            // button3
+            // btMin
             // 
-            button3.BackColor = SystemColors.ControlLightLight;
-            button3.Dock = DockStyle.Right;
-            button3.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
-            button3.Location = new Point(695, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(35, 35);
-            button3.TabIndex = 2;
-            button3.Text = "--";
-            button3.UseVisualStyleBackColor = false;
+            btMin.BackColor = Color.LimeGreen;
+            btMin.Dock = DockStyle.Right;
+            btMin.FlatStyle = FlatStyle.Flat;
+            btMin.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
+            btMin.Location = new Point(695, 0);
+            btMin.Name = "btMin";
+            btMin.Size = new Size(35, 35);
+            btMin.TabIndex = 8;
+            btMin.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btMax
             // 
-            button2.Dock = DockStyle.Right;
-            button2.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            button2.Location = new Point(730, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(35, 35);
-            button2.TabIndex = 1;
-            button2.Text = "[]";
-            button2.UseVisualStyleBackColor = true;
+            btMax.BackColor = Color.SandyBrown;
+            btMax.Dock = DockStyle.Right;
+            btMax.FlatStyle = FlatStyle.Flat;
+            btMax.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btMax.Location = new Point(730, 0);
+            btMax.Name = "btMax";
+            btMax.Size = new Size(35, 35);
+            btMax.TabIndex = 7;
+            btMax.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btExit
             // 
-            button1.Dock = DockStyle.Right;
-            button1.Font = new Font("Stencil", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Red;
-            button1.Location = new Point(765, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(35, 35);
-            button1.TabIndex = 0;
-            button1.Text = "Х";
-            button1.UseVisualStyleBackColor = true;
+            btExit.BackColor = Color.IndianRed;
+            btExit.Dock = DockStyle.Right;
+            btExit.FlatStyle = FlatStyle.Flat;
+            btExit.Font = new Font("Stencil", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btExit.ForeColor = SystemColors.ControlText;
+            btExit.Location = new Point(765, 0);
+            btExit.Name = "btExit";
+            btExit.Size = new Size(35, 35);
+            btExit.TabIndex = 6;
+            btExit.UseVisualStyleBackColor = false;
+            btExit.Click += btExit_Click;
             // 
             // Admin
             // 
@@ -320,7 +323,9 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Controls.Add(panel3);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Admin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
             FormClosing += Admin_FormClosing;
             Load += Admin_Load;
@@ -348,8 +353,8 @@
         private Button bt_delete;
         private Panel panel2;
         private Panel panel3;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btMin;
+        private Button btMax;
+        private Button btExit;
     }
 }

@@ -164,7 +164,9 @@
             Controls.Add(Login);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Avtorisation";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Avtorisation";
             FormClosing += Avtorisation_FormClosing;
             panel2.ResumeLayout(false);
