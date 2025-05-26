@@ -1,10 +1,12 @@
 ﻿using Curs_Radaeva.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -303,180 +305,293 @@ namespace Curs_Radaeva
         private void save_Click(object sender, EventArgs e)
         {
             int Count;
-            switch (x)
+            try
             {
-                case ActiveEntity.Admin:
-                    Models.Admin Admin = new();
-                    Admin.IdAdmin = Convert.ToInt32(data1.Text);
-                    Admin.NameAdmin = data2.Text;
-                    Admin.TelAdmin = (long)Convert.ToDouble(data3.Text);
-                    Ispr2525RadaevaVaKursachContext context10 = new();
-                    Count = context10.Roles.Count();
-                    if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
-                    {
-                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
-                        isError = IsError.Y;
+                switch (x)
+                {
+                    case ActiveEntity.Admin:
+                        Models.Admin Admin = new();
+                        Admin.IdAdmin = Convert.ToInt32(data1.Text);
+                        Admin.NameAdmin = data2.Text;
+                        Admin.TelAdmin = (long)Convert.ToDouble(data3.Text);
+                        Ispr2525RadaevaVaKursachContext context10 = new();
+                        Count = context10.Roles.Count();
+                        if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
+                        {
+                            MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
+                            isError = IsError.Y;
+                            break;
+                        }
+                        Admin.IdAuthorization = Convert.ToInt32(data4.Text);
+                        Ispr2525RadaevaVaKursachContext context = new();
+                        if (isEdit == IsEdit.Y)
+                            context.Update(Admin);
+                        if (isEdit == IsEdit.N)
+                            context.Add(Admin);
+                        context.SaveChanges();
                         break;
-                    }
-                    Admin.IdAuthorization = Convert.ToInt32(data4.Text);
-                    Ispr2525RadaevaVaKursachContext context = new();
-                    if (isEdit == IsEdit.Y)
-                        context.Update(Admin);
-                    if (isEdit == IsEdit.N)
-                        context.Add(Admin);
-                    context.SaveChanges();
-                    break;
-                case ActiveEntity.Avtorizacium:
-                    Authorization Avtorizacium = new();
-                    Avtorizacium.IdAuthorization = Convert.ToInt32(data1.Text);
-                    Avtorizacium.Login = data2.Text;
-                    Avtorizacium.Password = data3.Text;
-                    Ispr2525RadaevaVaKursachContext context11 = new();
-                    Count = context11.Roles.Count();
-                    if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
-                    {
-                        MessageBox.Show("IdRole не может быть меньше нуля или больше:" + Count);
-                        isError = IsError.Y;
+                    case ActiveEntity.Avtorizacium:
+                        Authorization Avtorizacium = new();
+                        Avtorizacium.IdAuthorization = Convert.ToInt32(data1.Text);
+                        Avtorizacium.Login = data2.Text;
+                        Avtorizacium.Password = data3.Text;
+                        Ispr2525RadaevaVaKursachContext context11 = new();
+                        Count = context11.Roles.Count();
+                        if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
+                        {
+                            MessageBox.Show("IdRole не может быть меньше нуля или больше:" + Count);
+                            isError = IsError.Y;
+                            break;
+                        }
+                        Avtorizacium.IdRole = Convert.ToInt32(data4.Text);
+                        Ispr2525RadaevaVaKursachContext context2 = new();
+                        if (isEdit == IsEdit.Y)
+                        {
+                            context2.Update(Avtorizacium);
+                        }
+                        if (isEdit == IsEdit.N)
+                        {
+                            context2.Add(Avtorizacium);
+                        }
+                        context2.SaveChanges();
                         break;
-                    }
-                    Avtorizacium.IdRole = Convert.ToInt32(data4.Text);
-                    Ispr2525RadaevaVaKursachContext context2 = new();
-                    if (isEdit == IsEdit.Y)
-                    {
-                        context2.Update(Avtorizacium);
-                    }
-                    if (isEdit == IsEdit.N)
-                    {
-                        context2.Add(Avtorizacium);
-                    }
-                    context2.SaveChanges();
-                    break;
-                case ActiveEntity.Client:
-                    Client Client = new();
-                    Client.IdClient = Convert.ToInt32(data1.Text);
-                    Client.NameClient = data2.Text;
-                    Client.TelClient = Convert.ToInt64(data3.Text);
-                    Client.DataRegisteredClient = DateOnly.FromDateTime(dateTimePicker1.Value);
-                    Ispr2525RadaevaVaKursachContext context12 = new();
-                    Count = context12.Authorizations.Count();
-                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
-                    {
-                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
-                        isError = IsError.Y;
+                    case ActiveEntity.Client:
+                        Client Client = new();
+                        Client.IdClient = Convert.ToInt32(data1.Text);
+                        Client.NameClient = data2.Text;
+                        Client.TelClient = Convert.ToInt64(data3.Text);
+                        Client.DataRegisteredClient = DateOnly.FromDateTime(dateTimePicker1.Value);
+                        Ispr2525RadaevaVaKursachContext context12 = new();
+                        Count = context12.Authorizations.Count();
+                        if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
+                        {
+                            MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
+                            isError = IsError.Y;
+                            break;
+                        }
+                        Client.IdAvtorizacia = Convert.ToInt32(data5.Text);
+                        Ispr2525RadaevaVaKursachContext context3 = new();
+                        if (isEdit == IsEdit.Y)
+                            context3.Update(Client);
+                        if (isEdit == IsEdit.N)
+                            context3.Add(Client);
+                        context3.SaveChanges();
                         break;
-                    }
-                    Client.IdAvtorizacia = Convert.ToInt32(data5.Text);
-                    Ispr2525RadaevaVaKursachContext context3 = new();
-                    if (isEdit == IsEdit.Y)
-                        context3.Update(Client);
-                    if (isEdit == IsEdit.N)
-                        context3.Add(Client);
-                    context3.SaveChanges();
-                    break;
-                case ActiveEntity.Driver:
-                    Driver Driver = new();
-                    Driver.IdDrivers = Convert.ToInt32(data1.Text);
-                    Driver.NameDrivers = data2.Text;
-                    Driver.LicenseNumberDrivers = Convert.ToInt32(data3.Text);
-                    Driver.TelDrivers = (long)Convert.ToDouble(data4.Text);
-                    Ispr2525RadaevaVaKursachContext context13 = new();
-                    Count = context13.StatusDrivers.Count();
-                    if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
-                    {
-                        MessageBox.Show("IdStatusDrivers не может быть меньше нуля или больше:" + Count);
-                        isError = IsError.Y;
+                    case ActiveEntity.Driver:
+                        Driver Driver = new();
+                        Driver.IdDrivers = Convert.ToInt32(data1.Text);
+                        Driver.NameDrivers = data2.Text;
+                        Driver.LicenseNumberDrivers = Convert.ToInt32(data3.Text);
+                        Driver.TelDrivers = (long)Convert.ToDouble(data4.Text);
+                        Ispr2525RadaevaVaKursachContext context13 = new();
+                        Count = context13.StatusDrivers.Count();
+                        if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > Count)
+                        {
+                            MessageBox.Show("IdStatusDrivers не может быть меньше нуля или больше:" + Count);
+                            isError = IsError.Y;
+                            break;
+                        }
+                        Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
+                        Ispr2525RadaevaVaKursachContext context14 = new();
+                        Count = context14.Authorizations.Count();
+                        if (Convert.ToInt32(data6.Text) < 1 || Convert.ToInt32(data6.Text) > Count)
+                        {
+                            MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
+                            isError = IsError.Y;
+                            break;
+                        }
+                        Driver.IdAuthorization = Convert.ToInt32(data6.Text);
+                        Ispr2525RadaevaVaKursachContext context4 = new();
+                        if (isEdit == IsEdit.Y)
+                            context4.Update(Driver);
+                        if (isEdit == IsEdit.N)
+                            context4.Add(Driver);
+                        context4.SaveChanges();
                         break;
-                    }
-                    Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
-                    Ispr2525RadaevaVaKursachContext context14 = new();
-                    Count = context14.Authorizations.Count();
-                    if (Convert.ToInt32(data6.Text) < 1 || Convert.ToInt32(data6.Text) > Count)
-                    {
-                        MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
-                        isError = IsError.Y;
+                    case ActiveEntity.Role:
+                        Role Role = new();
+                        Role.IdRole = Convert.ToInt32(data1.Text);
+                        Role.NameRole = data2.Text;
+                        Ispr2525RadaevaVaKursachContext context5 = new();
+                        if (isEdit == IsEdit.Y)
+                            context5.Update(Role);
+                        if (isEdit == IsEdit.N)
+                            context5.Add(Role);
+                        context5.SaveChanges();
                         break;
-                    }
-                    Driver.IdAuthorization = Convert.ToInt32(data6.Text);
-                    Ispr2525RadaevaVaKursachContext context4 = new();
-                    if (isEdit == IsEdit.Y)
-                        context4.Update(Driver);
-                    if (isEdit == IsEdit.N)
-                        context4.Add(Driver);
-                    context4.SaveChanges();
-                    break;
-                case ActiveEntity.Role:
-                    Role Role = new();
-                    Role.IdRole = Convert.ToInt32(data1.Text);
-                    Role.NameRole = data2.Text;
-                    Ispr2525RadaevaVaKursachContext context5 = new();
-                    if (isEdit == IsEdit.Y)
-                        context5.Update(Role);
-                    if (isEdit == IsEdit.N)
-                        context5.Add(Role);
-                    context5.SaveChanges();
-                    break;
-                case ActiveEntity.Route:
-                    Route Route = new();
-                    Route.IdRoutes = Convert.ToInt32(data1.Text);
-                    Route.StartLocationRoutes = data2.Text;
-                    Route.EndLocationRoutes = data3.Text;
-                    Route.DistanceRoutes = Convert.ToInt32(data4.Text);
-                    Route.TravelTimeRoutes = TimeOnly.FromDateTime(dateTimePicker2.Value);
-                    Ispr2525RadaevaVaKursachContext context6 = new();
-                    if (isEdit == IsEdit.Y)
-                        context6.Update(Route);
-                    if (isEdit == IsEdit.N)
-                        context6.Add(Route);
-                    context6.SaveChanges();
-                    break;
-                case ActiveEntity.StatusDriver:
-                    StatusDriver StatusDriver = new();
-                    StatusDriver.IdStatusDrivers = Convert.ToInt32(data1.Text);
-                    StatusDriver.NameStatusDrivers = data2.Text;
-                    Ispr2525RadaevaVaKursachContext context7 = new();
-                    if (isEdit == IsEdit.Y)
-                        context7.Update(StatusDriver);
-                    if (isEdit == IsEdit.N)
-                        context7.Add(StatusDriver);
-                    context7.SaveChanges();
-                    break;
-                case ActiveEntity.TimeTable:
-                    TimeTable TimeTable = new();
-                    TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
-                    TimeTable.IdRoutes = Convert.ToInt32(data2.Text);
-                    TimeTable.IdTransport = Convert.ToInt32(data3.Text);
-                    TimeTable.IdDrivers = Convert.ToInt32(data4.Text);
-                    TimeTable.DepartureTime = TimeOnly.FromDateTime(dateTimePicker2.Value);
-                    TimeTable.ArrivalTime = TimeOnly.FromDateTime(dateTimePicker3.Value);
-                    Ispr2525RadaevaVaKursachContext context8 = new();
-                    if (isEdit == IsEdit.Y)
-                        context8.Update(TimeTable);
-                    if (isEdit == IsEdit.N)
-                        context8.Add(TimeTable);
-                    context8.SaveChanges();
-                    break;
-                case ActiveEntity.Transport:
-                    Transport Transport = new();
-                    Transport.IdTransport = Convert.ToInt32(data1.Text);
-                    Transport.NumberplateTransport = data2.Text;
-                    Transport.HeightTransport = Convert.ToDecimal(data3.Text);
-                    Transport.LongTransport = Convert.ToDecimal(data4.Text);
-                    Transport.WidthTransport = Convert.ToDecimal(data5.Text);
-                    Transport.MaxSpeedTransport = (long)Convert.ToDouble(data6.Text);
-                    Ispr2525RadaevaVaKursachContext context9 = new();
-                    if (isEdit == IsEdit.Y)
-                        context9.Update(Transport);
-                    if (isEdit == IsEdit.N)
-                        context9.Add(Transport);
-                    context9.SaveChanges();
-                    break;
-                default:
-                    break;
-            }
-            if (isError == IsError.N)
-            {
+                    case ActiveEntity.Route:
+                        Route Route = new();
+                        Route.IdRoutes = Convert.ToInt32(data1.Text);
+                        Route.StartLocationRoutes = data2.Text;
+                        Route.EndLocationRoutes = data3.Text;
+                        Route.DistanceRoutes = Convert.ToInt32(data4.Text);
+                        Route.TravelTimeRoutes = TimeOnly.FromDateTime(dateTimePicker2.Value);
+                        Ispr2525RadaevaVaKursachContext context6 = new();
+                        if (isEdit == IsEdit.Y)
+                            context6.Update(Route);
+                        if (isEdit == IsEdit.N)
+                            context6.Add(Route);
+                        context6.SaveChanges();
+                        break;
+                    case ActiveEntity.StatusDriver:
+                        StatusDriver StatusDriver = new();
+                        StatusDriver.IdStatusDrivers = Convert.ToInt32(data1.Text);
+                        StatusDriver.NameStatusDrivers = data2.Text;
+                        Ispr2525RadaevaVaKursachContext context7 = new();
+                        if (isEdit == IsEdit.Y)
+                            context7.Update(StatusDriver);
+                        if (isEdit == IsEdit.N)
+                            context7.Add(StatusDriver);
+                        context7.SaveChanges();
+                        break;
+                    case ActiveEntity.Transport:
+                        Transport Transport = new();
+                        Transport.IdTransport = Convert.ToInt32(data1.Text);
+                        Transport.NumberplateTransport = data2.Text;
+                        Transport.HeightTransport = Convert.ToDecimal(data3.Text);
+                        Transport.LongTransport = Convert.ToDecimal(data4.Text);
+                        Transport.WidthTransport = Convert.ToDecimal(data5.Text);
+                        Transport.MaxSpeedTransport = (long)Convert.ToDouble(data6.Text);
+                        Ispr2525RadaevaVaKursachContext context9 = new();
+                        if (isEdit == IsEdit.Y)
+                            context9.Update(Transport);
+                        if (isEdit == IsEdit.N)
+                            context9.Add(Transport);
+                        context9.SaveChanges();
+                        break;
+                    //case ActiveEntity.TimeTable:
+                    //    TimeTable TimeTable = new();
+                    //    TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
+                    //    TimeTable.IdRoutes = Convert.ToInt32(data2.Text);
+                    //    TimeTable.IdTransport = Convert.ToInt32(data3.Text);
+                    //    TimeTable.IdDrivers = Convert.ToInt32(data4.Text);
+                    //    TimeTable.DepartureTime = TimeOnly.FromDateTime(dateTimePicker2.Value);
+                    //    TimeTable.ArrivalTime = TimeOnly.FromDateTime(dateTimePicker3.Value);
+                    //    Ispr2525RadaevaVaKursachContext context8 = new();
+                    //    if (isEdit == IsEdit.Y)
+                    //        context8.Update(TimeTable);
+                    //    if (isEdit == IsEdit.N)
+                    //        context8.Add(TimeTable);
+                    //    context8.SaveChanges();
+                    //    break;
+                    case ActiveEntity.TimeTable:
+                        if (isEdit == IsEdit.N)
+                        {
+                            TimeTable TimeTable = new();
+                            Ispr2525RadaevaVaKursachContext context8 = new();
+                            Count = context8.TimeTables.Count();
+                            if (Convert.ToInt32(data1.Text) > Count || Convert.ToInt32(data1.Text) < 0)
+                            {
+                                MessageBox.Show("IdTimeTable не может быть меньше нуля или больше:" + Count);
+                                isError = IsError.Y;
+                                break;
+                            }
+                            else
+                                TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
+                            Count = context8.Routes.Count();
+                            if (Convert.ToInt32(data2.Text) > Count || Convert.ToInt32(data2.Text) < 0)
+                            {
+                                MessageBox.Show("IdRoutes не может быть меньше нуля или больше:" + Count);
+                                isError = IsError.Y;
+                                break;
+                            }
+                            else
+                                TimeTable.IdRoutes = Convert.ToInt32(data2.Text);
+                            Count = context8.Transports.Count();
+                            if (Convert.ToInt32(data3.Text) > Count || Convert.ToInt32(data3.Text) < 0)
+                            {
+                                MessageBox.Show("IdTransport не может быть меньше нуля или больше:" + Count);
+                                isError = IsError.Y;
+                                break;
+                            }
+                            else
+                                TimeTable.IdTransport = Convert.ToInt32(data3.Text);
+                            Count = context8.Drivers.Count();
+                            if (Convert.ToInt32(data4.Text) > Count || Convert.ToInt32(data4.Text) < 0)
+                            {
+                                MessageBox.Show("IdTransport не может быть меньше нуля или больше:" + Count);
+                                isError = IsError.Y;
+                                break;
+                            }
+                            else
+                                TimeTable.IdDrivers = Convert.ToInt32(data4.Text);
+                            Ispr2525RadaevaVaKursachContext context1 = new();
+                            if (isEdit == IsEdit.Y)
+                                context1.Update(TimeTable);
+                            if (isEdit == IsEdit.N)
+                                context1.Add(TimeTable);
+                            context1.SaveChanges();
+                        }
+                        if (isEdit == IsEdit.Y)
+                        {
+                            using (var context15 = new Ispr2525RadaevaVaKursachContext())
+                            {
+                                int oldProjectId = (data_entry.Tag as int?) ?? 0;
+                                int oldMaterialId = (data_entry2.Tag as int?) ?? 0;
+                                int projectId = Convert.ToInt32(data_entry.Text);
+                                int materialIdNew = Convert.ToInt32(data_entry2.Text);
+                                decimal quantity = decimal.Parse(data_entry3.Text.Trim().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture);
+
+                                // Проверка существования проекта и материала
+                                if (!context6.Projects.Any(p => p.ProjectId == projectId) ||
+                                    !context6.Materials.Any(m => m.MaterialId == materialIdNew))
+                                {
+                                    MessageBox.Show("Проект или материал не найден!");
+                                    return;
+                                }
+
+                                // Проверка на дубликат новой записи
+                                if (context6.ProjectMaterials.Any(p => p.ProjectId == projectId && p.MaterialId == materialIdNew))
+                                {
+                                    MessageBox.Show("Такая связь уже существует!");
+                                    return;
+                                }
+
+                                // Удаление старой записи
+                                var oldPm = context6.ProjectMaterials
+                                    .FirstOrDefault(p => p.ProjectId == oldProjectId && p.MaterialId == oldMaterialId);
+
+                                if (oldPm == null)
+                                {
+                                    context6.ProjectMaterials.Add(new ProjectMaterial
+                                    {
+                                        ProjectId = projectId,
+                                        MaterialId = materialIdNew,
+                                        Quantity = quantity
+                                    });
+
+                                    context6.SaveChanges();
+                                    break;
+                                }
+
+                                context6.ProjectMaterials.Remove(oldPm);
+
+                                // Добавление новой записи
+                                context6.ProjectMaterials.Add(new ProjectMaterial
+                                {
+                                    ProjectId = projectId,
+                                    MaterialId = materialIdNew,
+                                    Quantity = quantity
+                                });
+
+                                context6.SaveChanges();
+                            }
+                        }
+                        break;
+
+                }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                MessageBox.Show("Ошибка: данные были изменены другим пользователем. Обновите данные.");
+                ExceptionToFile.SaveExceptionToDesktop(ex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+                ExceptionToFile.SaveExceptionToDesktop(ex);
             }
         }
 
