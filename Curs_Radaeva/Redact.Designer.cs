@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            dateTimePicker3 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             cancellation = new Button();
@@ -51,6 +52,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlDarkDark;
+            panel1.Controls.Add(dateTimePicker3);
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(cancellation);
@@ -72,6 +74,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // dateTimePicker3
+            // 
+            dateTimePicker3.CustomFormat = "hh:mm:ss";
+            dateTimePicker3.Format = DateTimePickerFormat.Custom;
+            dateTimePicker3.Location = new Point(278, 238);
+            dateTimePicker3.Name = "dateTimePicker3";
+            dateTimePicker3.Size = new Size(200, 23);
+            dateTimePicker3.TabIndex = 19;
             // 
             // dateTimePicker2
             // 
@@ -102,6 +113,7 @@
             cancellation.TabIndex = 16;
             cancellation.Text = "ОТМЕНА";
             cancellation.UseVisualStyleBackColor = false;
+            cancellation.Click += cancellation_Click;
             // 
             // save
             // 
@@ -263,5 +275,6 @@
         private TextBox data1;
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker3;
     }
 }

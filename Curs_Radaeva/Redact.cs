@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -273,7 +274,7 @@ namespace Curs_Radaeva
                     Driver.IdDrivers = Convert.ToInt32(data1.Text);
                     Driver.NameDrivers = data2.Text;
                     Driver.LicenseNumberDrivers = Convert.ToInt32(data3.Text);
-                    Driver .TelDrivers = Convert.ToInt32(data4.Text);
+                    Driver.TelDrivers = Convert.ToInt32(data4.Text);
                     Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
                     if (Convert.ToInt32(data5.Text) < 1 || Convert.ToInt32(data5.Text) > 2)
                     {
@@ -322,17 +323,47 @@ namespace Curs_Radaeva
                         context6.Add(Route);
                     context6.SaveChanges();
                     break;
-                //case ActiveEntity.Status:
-                //    Status status = new();
-                //    status.IdStatus = Convert.ToInt32(input.Text);
-                //    status.Status1 = input4.Text;
-                //    Ispr2525RadaevaVaKursachContext context7 = new();
-                //    if (isEdit == IsEdit.Y)
-                //        context7.Update(status);
-                //    if (isEdit == IsEdit.N)
-                //        context7.Add(status);
-                //    context7.SaveChanges();
-                //    break;
+                case ActiveEntity.StatusDriver:
+                    StatusDriver StatusDriver = new();
+                    StatusDriver.IdStatusDrivers = Convert.ToInt32(data1.Text);
+                    StatusDriver.NameStatusDrivers = data2.Text;
+                    Ispr2525RadaevaVaKursachContext context7 = new();
+                    if (isEdit == IsEdit.Y)
+                        context7.Update(StatusDriver);
+                    if (isEdit == IsEdit.N)
+                        context7.Add(StatusDriver);
+                    context7.SaveChanges();
+                    break;
+                case ActiveEntity.TimeTable:
+                    TimeTable TimeTable = new();
+                    TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
+                    TimeTable.IdRoutes = Convert.ToInt32(data2.Text);
+                    TimeTable.IdTransport = Convert.ToInt32(data3.Text);
+                    TimeTable.IdDrivers = Convert.ToInt32(data4.Text);
+                    TimeTable.DepartureTime = TimeOnly.FromDateTime(dateTimePicker2.Value);
+                    TimeTable.ArrivalTime = TimeOnly.FromDateTime(dateTimePicker3.Value);
+                    Ispr2525RadaevaVaKursachContext context8 = new();
+                    if (isEdit == IsEdit.Y)
+                        context8.Update(TimeTable);
+                    if (isEdit == IsEdit.N)
+                        context8.Add(TimeTable);
+                    context8.SaveChanges();
+                    break;
+                case ActiveEntity.Transport:
+                    Transport Transport = new();
+                    Transport.IdTransport = Convert.ToInt32(data1.Text);
+                    Transport.NumberplateTransport = data2.Text;
+                    Transport.HeightTransport = Convert.ToDecimal(data3.Text);
+                    Transport.LongTransport = Convert.ToDecimal(data4.Text);
+                    Transport.WidthTransport = Convert.ToDecimal(data5.Text);
+                    Transport.MaxSpeedTransport = Convert.ToInt32(data6.Text);
+                    Ispr2525RadaevaVaKursachContext context9 = new();
+                    if (isEdit == IsEdit.Y)
+                        context9.Update(Transport);
+                    if (isEdit == IsEdit.N)
+                        context9.Add(Transport);
+                    context9.SaveChanges();
+                    break;
                 default:
                     break;
             }
@@ -341,6 +372,67 @@ namespace Curs_Radaeva
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private void cancellation_Click(object sender, EventArgs e)
+        {
+            if (isEdit == IsEdit.Y)
+            {
+                switch (x)
+                {
+                    case ActiveEntity.Admin:
+                        Ispr2525RadaevaVaKursachContext context = new();
+                        context.SaveChanges();
+                        break;
+                    case ActiveEntity.Avtorizacium:
+                        Ispr2525RadaevaVaKursachContext context2 = new();
+                        context2.SaveChanges();
+                        break;
+                    case ActiveEntity.Client:
+                        Ispr2525RadaevaVaKursachContext context3 = new();
+                        context3.SaveChanges();
+                        break;
+                    case ActiveEntity.Driver:
+                        Ispr2525RadaevaVaKursachContext context4 = new();
+                        context4.SaveChanges();
+                        break;
+                    case ActiveEntity.Role:
+                        Ispr2525RadaevaVaKursachContext context5 = new();
+                        context5.SaveChanges();
+                        break;
+                    case ActiveEntity.Route:
+                        Ispr2525RadaevaVaKursachContext context6 = new();
+                        context6.SaveChanges();
+                        break;
+                    case ActiveEntity.StatusDriver:
+                        Ispr2525RadaevaVaKursachContext context7 = new();
+                        context7.SaveChanges();
+                        break;
+                    case ActiveEntity.TimeTable:
+                        Ispr2525RadaevaVaKursachContext context8 = new();
+                        context8.SaveChanges();
+                        break;
+                    case ActiveEntity.Transport:
+                        Ispr2525RadaevaVaKursachContext context9 = new();
+                        context9.SaveChanges();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+
+        }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }
