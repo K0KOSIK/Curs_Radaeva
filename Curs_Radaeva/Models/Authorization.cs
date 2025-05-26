@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Curs_Radaeva.Models;
 
-public partial class Avtorizacium
+public partial class Authorization
 {
-    public int IdAvtorizacia { get; set; }
+    public int IdAuthorization { get; set; }
 
-    public string LoginAvtorizacia { get; set; } = null!;
+    public string Login { get; set; } = null!;
 
-    public string PasswordAvtorizacia { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
     public int IdRole { get; set; }
 

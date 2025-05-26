@@ -20,7 +20,7 @@ public partial class Ispr2525RadaevaVaKursachContext : DbContext
 
     public virtual DbSet<AdminView> AdminViews { get; set; }
 
-    public virtual DbSet<Avtorizacium> Avtorizacia { get; set; }
+    public virtual DbSet<Authorization> Authorizations { get; set; }
 
     public virtual DbSet<Client> Clients { get; set; }
 
@@ -52,12 +52,12 @@ public partial class Ispr2525RadaevaVaKursachContext : DbContext
 
             entity.ToTable("Admin");
 
-            entity.HasIndex(e => e.IdAvtorizacia, "IdUser").IsUnique();
+            entity.HasIndex(e => e.IdAuthorization, "IdUser").IsUnique();
 
             entity.Property(e => e.NameAdmin).HasMaxLength(45);
 
-            entity.HasOne(d => d.IdAvtorizaciaNavigation).WithOne(p => p.Admin)
-                .HasForeignKey<Admin>(d => d.IdAvtorizacia)
+            entity.HasOne(d => d.IdAuthorizationNavigation).WithOne(p => p.Admin)
+                .HasForeignKey<Admin>(d => d.IdAuthorization)
                 .HasConstraintName("fk_Admin_User");
         });
 
@@ -66,26 +66,25 @@ public partial class Ispr2525RadaevaVaKursachContext : DbContext
             entity
                 .HasNoKey()
                 .ToView("AdminView");
-
-            entity.Property(e => e.LoginAvtorizacia).HasMaxLength(45);
-            entity.Property(e => e.NameAdmin).HasMaxLength(45);
         });
 
-        modelBuilder.Entity<Avtorizacium>(entity =>
+        modelBuilder.Entity<Authorization>(entity =>
         {
-            entity.HasKey(e => e.IdAvtorizacia).HasName("PRIMARY");
+            entity.HasKey(e => e.IdAuthorization).HasName("PRIMARY");
+
+            entity.ToTable("Authorization");
 
             entity.HasIndex(e => e.IdRole, "FK_Avtorizacia_Role");
 
-            entity.HasIndex(e => e.LoginAvtorizacia, "Login").IsUnique();
+            entity.HasIndex(e => e.Login, "Login").IsUnique();
 
-            entity.Property(e => e.LoginAvtorizacia).HasMaxLength(45);
-            entity.Property(e => e.PasswordAvtorizacia).HasMaxLength(105);
+            entity.Property(e => e.Login).HasMaxLength(45);
+            entity.Property(e => e.Password).HasMaxLength(105);
 
-            entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.Avtorizacia)
+            entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.Authorizations)
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Avtorizacia_ibfk_1");
+                .HasConstraintName("Authorization_ibfk_1");
         });
 
         modelBuilder.Entity<Client>(entity =>
@@ -107,14 +106,14 @@ public partial class Ispr2525RadaevaVaKursachContext : DbContext
         {
             entity.HasKey(e => e.IdDrivers).HasName("PRIMARY");
 
-            entity.HasIndex(e => e.IdAvtorizacia, "IdUser").IsUnique();
+            entity.HasIndex(e => e.IdAuthorization, "IdUser").IsUnique();
 
             entity.HasIndex(e => e.IdStatusDrivers, "fk_timetable_idStatusDrivers_idx");
 
             entity.Property(e => e.NameDrivers).HasMaxLength(45);
 
-            entity.HasOne(d => d.IdAvtorizaciaNavigation).WithOne(p => p.Driver)
-                .HasForeignKey<Driver>(d => d.IdAvtorizacia)
+            entity.HasOne(d => d.IdAuthorizationNavigation).WithOne(p => p.Driver)
+                .HasForeignKey<Driver>(d => d.IdAuthorization)
                 .HasConstraintName("fk_Drivers_Avtorizacia");
 
             entity.HasOne(d => d.IdStatusDriversNavigation).WithMany(p => p.Drivers)

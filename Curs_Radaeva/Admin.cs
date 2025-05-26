@@ -13,7 +13,8 @@ namespace Curs_Radaeva
 {
     public partial class Admin : Form
     {
-        public Admin()
+        private Avtorisation _form1;
+        public Admin(Avtorisation form1)
         {
             InitializeComponent();
         }
@@ -24,7 +25,7 @@ namespace Curs_Radaeva
             dataGridView1.DataSource = context.Admins.ToList();
         }
 
-        private void Admin_BUT_Click(object sender, EventArgs e)
+        private void btAdmin_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Admins.ToList();
@@ -33,7 +34,7 @@ namespace Curs_Radaeva
         private void Avtorizacia_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Avtorizacia.ToList();
+            dataGridView1.DataSource = context.Authorizations.ToList();
         }
 
         private void Client_Click(object sender, EventArgs e)
@@ -76,6 +77,21 @@ namespace Curs_Radaeva
         {
             Ispr2525RadaevaVaKursachContext context = new();
             dataGridView1.DataSource = context.Transports.ToList();
+        }
+
+        private void bt_add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_edit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_delete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

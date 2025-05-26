@@ -15,9 +15,9 @@ public partial class Driver
 
     public int IdStatusDrivers { get; set; }
 
-    public int? IdAvtorizacia { get; set; }
+    public int? IdAuthorization { get; set; }
 
-    public virtual Avtorizacium? IdAvtorizaciaNavigation { get; set; }
+    public virtual Authorization? IdAuthorizationNavigation { get; set; }
 
     public virtual StatusDriver IdStatusDriversNavigation { get; set; } = null!;
 

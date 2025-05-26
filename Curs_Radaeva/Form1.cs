@@ -26,44 +26,40 @@ namespace Curs_Radaeva
 
         }
 
-        private void Avtorises_Click(object sender, EventArgs e)
+        private async void Avtorises_Click(object sender, EventArgs e)
         {
             try
             {
                 Ispr2525RadaevaVaKursachContext context = new();
-                User? user = context.User
-                    .Where(user => user.Username == textBox1.Text && user.Password == textBox2.Text)
-                    .Include(user => user.Roles)
+                Authorization? authorization = context.Authorizations
+                    .Where(authorization => authorization.Login == textBox1.Text && authorization.Password == textBox2.Text)
                     .FirstOrDefault();
-                if (user.Role == "Администратор")
+                if (authorization.IdRole == 1)
                 {
-                    MessageBox.Show(user.Role);
-                    //Avtoris_role.Text = user.Role;
-                    //Avtoris_role.ForeColor = Color.ForestGreen;
-                    //Avtoris_role.Text = user.Role;
-                    //await Task.Delay(1500);
+                    //MessageBox.Show(user.Role);
+                    Avtoris_role.Text = "Администратор";
+                    Avtoris_role.ForeColor = Color.ForestGreen;
+                    await Task.Delay(1500);
                     Admin form2 = new Admin(this);
                     form2.Show();
                 }
-                if (user.Role == "зам директора")
+                if (authorization.IdRole == 2)
                 {
                     //MessageBox.Show(user.Role);
-                    Avtoris_role.Text = user.Role;
+                    Avtoris_role.Text = "Клиент";
                     Avtoris_role.ForeColor = Color.ForestGreen;
-                    Avtoris_role.Text = user.Role;
                     await Task.Delay(1500);
-                    Deputy_Director form3 = new Deputy_Director(this);
-                    form3.Show();
+                    //Deputy_Director form3 = new Deputy_Director(this);
+                    //form3.Show();
                 }
-                if (user.Role == "директор")
+                if (authorization.IdRole == 3)
                 {
                     //MessageBox.Show(user.Role);
-                    Avtoris_role.Text = user.Role;
+                    Avtoris_role.Text = "Водитель";
                     Avtoris_role.ForeColor = Color.ForestGreen;
-                    Avtoris_role.Text = user.Role;
                     await Task.Delay(1500);
-                    director form3 = new director(this);
-                    form3.Show();
+                    //director form3 = new director(this);
+                    //form3.Show();
                 }
                 this.Hide();
                 textBox1.Text = "";
@@ -71,9 +67,9 @@ namespace Curs_Radaeva
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Неправильный логин или пароль:");
-                //Avtoris_role.Text = "Неправильный логин или пароль";
-                //Avtoris_role.ForeColor = Color.IndianRed;
+                MessageBox.Show("Неправильный логин или пароль:");
+                Avtoris_role.Text = "Неправильный логин или пароль";
+                Avtoris_role.ForeColor = Color.IndianRed;
                 textBox1.Text = "";
                 textBox2.Text = "";
             }

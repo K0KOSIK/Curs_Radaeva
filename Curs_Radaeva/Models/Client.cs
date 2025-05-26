@@ -15,5 +15,5 @@ public partial class Client
 
     public int? IdAvtorizacia { get; set; }
 
-    public virtual Avtorizacium? IdAvtorizaciaNavigation { get; set; }
+    public virtual Authorization? IdAvtorizaciaNavigation { get; set; }
 }
