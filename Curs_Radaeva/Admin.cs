@@ -58,7 +58,7 @@ namespace Curs_Radaeva
         private void Routes_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Routes.ToList();
+            dataGridView1.DataSource = context.Routes.ToList();//
         }
 
         private void StatusDrivers_Click(object sender, EventArgs e)
