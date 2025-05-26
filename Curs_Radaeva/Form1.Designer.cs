@@ -140,6 +140,7 @@
             button1.Size = new Size(35, 35);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // Avtoris_role
             // 
@@ -165,6 +166,7 @@
             Controls.Add(textBox1);
             Name = "Avtorisation";
             Text = "Avtorisation";
+            FormClosing += Avtorisation_FormClosing;
             panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

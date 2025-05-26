@@ -75,7 +75,7 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker2.CustomFormat = "hh:mm:ss";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.Location = new Point(278, 153);
             dateTimePicker2.Name = "dateTimePicker2";
@@ -84,7 +84,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker1.CustomFormat = "hh:mm:ss";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.Location = new Point(278, 80);
             dateTimePicker1.Name = "dateTimePicker1";

@@ -314,7 +314,7 @@ namespace Curs_Radaeva
                     Route.StartLocationRoutes = data2.Text;
                     Route.EndLocationRoutes = data3.Text;
                     Route.DistanceRoutes = Convert.ToInt32(data4.Text);
-                    //Route.TravelTimeRoutes = DateOnly.FromDateTime(dateTimePicker2.Value);
+                    Route.TravelTimeRoutes = TimeOnly.FromDateTime(dateTimePicker2.Value);
                     Ispr2525RadaevaVaKursachContext context6 = new();
                     if (isEdit == IsEdit.Y)
                         context6.Update(Route);
@@ -326,13 +326,13 @@ namespace Curs_Radaeva
                 //    Status status = new();
                 //    status.IdStatus = Convert.ToInt32(input.Text);
                 //    status.Status1 = input4.Text;
-                    Ispr2525RadaevaVaKursachContext context7 = new();
-                    if (isEdit == IsEdit.Y)
-                    //    context7.Update(status);
-                    //if (isEdit == IsEdit.N)
-                    //    context7.Add(status);
-                    context7.SaveChanges();
-                    break;
+                //    Ispr2525RadaevaVaKursachContext context7 = new();
+                //    if (isEdit == IsEdit.Y)
+                //        context7.Update(status);
+                //    if (isEdit == IsEdit.N)
+                //        context7.Add(status);
+                //    context7.SaveChanges();
+                //    break;
                 default:
                     break;
             }

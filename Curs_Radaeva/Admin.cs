@@ -15,9 +15,17 @@ namespace Curs_Radaeva
     public partial class Admin : Form
     {
         private Avtorisation _form1;
+        public ActiveEntity activeEntity;
+        public IsEdit isEdit;
         public Admin(Avtorisation form1)
         {
             InitializeComponent();
+            this.FormClosed += Admin_FormClosed;
+
+        }
+        private void Admin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _form1.Show();
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -59,7 +67,9 @@ namespace Curs_Radaeva
         private void Routes_Click(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Routes.ToList();//
+            dataGridView1.DataSource = context.Routes.ToList();
+            dataGridView1.Columns[5].Visible = false;
+            activeEntity = ActiveEntity.Route;
         }
 
         private void StatusDrivers_Click(object sender, EventArgs e)
@@ -238,7 +248,35 @@ namespace Curs_Radaeva
 
         private void bt_edit_Click(object sender, EventArgs e)
         {
-
+            isEdit = IsEdit.Y;
+            if (activeEntity == ActiveEntity.Route)
+            {
+                try
+                {
+                    var Route = new Route
+                    {
+                        IdRoutes = (int)dataGridView1.SelectedRows[0].Cells[0].Value,
+                        StartLocationRoutes = (string)dataGridView1.SelectedRows[0].Cells[1].Value,
+                        EndLocationRoutes = (string)dataGridView1.SelectedRows[0].Cells[2].Value,
+                        DistanceRoutes = (int)dataGridView1.SelectedRows[0].Cells[3].Value,
+                        TravelTimeRoutes = (TimeOnly)dataGridView1.SelectedRows[0].Cells[4].Value
+                    };
+                    this.Hide();
+                    var red = new Redact(ActiveEntity.Route, Route);
+                    red.isEdit = isEdit;
+                    if (red.ShowDialog() == DialogResult.OK)
+                    {
+                        Ispr2525RadaevaVaKursachContext context = new();
+                        dataGridView1.DataSource = context.Routes.ToList();
+                        dataGridView1.Refresh();
+                        this.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Не получилось изменить: " + ex.Message);
+                }
+            }
         }
 
         private void bt_delete_Click(object sender, EventArgs e)
@@ -247,6 +285,11 @@ namespace Curs_Radaeva
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Admin_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }

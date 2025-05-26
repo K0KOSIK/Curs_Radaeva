@@ -13,7 +13,7 @@ public partial class Route
 
     public int DistanceRoutes { get; set; }
 
-    public DateOnly TravelTimeRoutes { get; set; }
+    public TimeOnly TravelTimeRoutes { get; set; }
 
     public virtual ICollection<TimeTable> TimeTables { get; set; } = new List<TimeTable>();
 }
