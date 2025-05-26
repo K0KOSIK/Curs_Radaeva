@@ -90,9 +90,38 @@ namespace Curs_Radaeva
 
         private void TimeTable_Click(object sender, EventArgs e)
         {
-            Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.TimeTables.ToList();
-            activeEntity = ActiveEntity.TimeTable;
+            try
+            {
+                Ispr2525RadaevaVaKursachContext context = new();
+                //dataGridView1.DataSource = context.TimeTables.ToList();
+                var data = context.TimeTables
+                    .Include(t => t.Route)
+                    .Include(t => t.Driver)
+                    .Include(t => t.Transport)
+                    .Select(t => new
+                    {
+                        IdTimeTable = t.IdTimeTable,
+                        IdRoutes = t.IdRoutes,
+                        IdTransport = t.IdTransport,
+                        IdDrivers = t.IdDrivers,
+                        StartLocationRoutes = t.Route.StartLocationRoutes,
+                        EndLocationRoutes = t.Route.EndLocationRoutes,
+                        NameDrivers = t.Driver.NameDrivers,
+                        LicenseNumberDrivers = t.Driver.LicenseNumberDrivers,
+                        NumberplateTransport = t.Transport.NumberplateTransport,
+                        DepartureTime = t.DepartureTime,
+                        ArrivalTime = t.ArrivalTime,
+                    }).ToList();
+                dataGridView1.DataSource = data;
+                activeEntity = ActiveEntity.TimeTable;
+                dataGridView1.Columns[1].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[3].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                ExceptionToFile.SaveExceptionToDesktop(ex);
+            }
         }
 
         private void Transport_Click(object sender, EventArgs e)

@@ -162,17 +162,17 @@ public partial class Ispr2525RadaevaVaKursachContext : DbContext
             entity.Property(e => e.ArrivalTime).HasColumnType("time");
             entity.Property(e => e.DepartureTime).HasColumnType("time");
 
-            entity.HasOne(d => d.IdDriversNavigation).WithMany(p => p.TimeTables)
+            entity.HasOne(d => d.Driver).WithMany(p => p.TimeTables)
                 .HasForeignKey(d => d.IdDrivers)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_timetable_idDrivers");
 
-            entity.HasOne(d => d.IdRoutesNavigation).WithMany(p => p.TimeTables)
+            entity.HasOne(d => d.Route).WithMany(p => p.TimeTables)
                 .HasForeignKey(d => d.IdRoutes)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_timetable_idRoutes");
 
-            entity.HasOne(d => d.IdTransportNavigation).WithMany(p => p.TimeTables)
+            entity.HasOne(d => d.Transport).WithMany(p => p.TimeTables)
                 .HasForeignKey(d => d.IdTransport)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_timetable_idTransport");

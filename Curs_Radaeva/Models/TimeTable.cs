@@ -17,9 +17,9 @@ public partial class TimeTable
 
     public TimeOnly ArrivalTime { get; set; }
 
-    public virtual Driver IdDriversNavigation { get; set; } = null!;
+    public virtual Driver Driver { get; set; } = null!;
 
-    public virtual Route IdRoutesNavigation { get; set; } = null!;
+    public virtual Route Route { get; set; } = null!;
 
-    public virtual Transport IdTransportNavigation { get; set; } = null!;
+    public virtual Transport Transport { get; set; } = null!;
 }
