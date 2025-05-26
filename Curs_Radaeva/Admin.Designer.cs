@@ -79,8 +79,8 @@
             bt_delete.BackColor = SystemColors.AppWorkspace;
             bt_delete.Dock = DockStyle.Top;
             bt_delete.Font = new Font("Stencil", 12F);
-            bt_delete.ForeColor = SystemColors.ActiveCaption;
-            bt_delete.Location = new Point(0, 386);
+            bt_delete.ForeColor = SystemColors.ActiveCaptionText;
+            bt_delete.Location = new Point(0, 385);
             bt_delete.Name = "bt_delete";
             bt_delete.Size = new Size(142, 26);
             bt_delete.TabIndex = 9;
@@ -93,8 +93,8 @@
             bt_edit.BackColor = SystemColors.AppWorkspace;
             bt_edit.Dock = DockStyle.Top;
             bt_edit.Font = new Font("Stencil", 12F);
-            bt_edit.ForeColor = SystemColors.ActiveCaption;
-            bt_edit.Location = new Point(0, 360);
+            bt_edit.ForeColor = SystemColors.ActiveCaptionText;
+            bt_edit.Location = new Point(0, 359);
             bt_edit.Name = "bt_edit";
             bt_edit.Size = new Size(142, 26);
             bt_edit.TabIndex = 10;
@@ -107,8 +107,8 @@
             bt_add.BackColor = SystemColors.AppWorkspace;
             bt_add.Dock = DockStyle.Top;
             bt_add.Font = new Font("Stencil", 12F);
-            bt_add.ForeColor = SystemColors.ActiveCaption;
-            bt_add.Location = new Point(0, 336);
+            bt_add.ForeColor = SystemColors.ActiveCaptionText;
+            bt_add.Location = new Point(0, 335);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(142, 24);
             bt_add.TabIndex = 11;
@@ -120,17 +120,19 @@
             // 
             panel2.BackColor = Color.FromArgb(64, 64, 64);
             panel2.Dock = DockStyle.Top;
+            panel2.ForeColor = SystemColors.ActiveCaptionText;
             panel2.Location = new Point(0, 241);
             panel2.Name = "panel2";
-            panel2.Size = new Size(142, 95);
+            panel2.Size = new Size(142, 94);
             panel2.TabIndex = 12;
+            panel2.Paint += panel2_Paint;
             // 
             // Transport
             // 
             Transport.BackColor = SystemColors.AppWorkspace;
             Transport.Dock = DockStyle.Top;
             Transport.Font = new Font("Stencil", 12F);
-            Transport.ForeColor = SystemColors.ActiveCaption;
+            Transport.ForeColor = SystemColors.ActiveCaptionText;
             Transport.Location = new Point(0, 215);
             Transport.Name = "Transport";
             Transport.Size = new Size(142, 26);
@@ -144,7 +146,7 @@
             TimeTable.BackColor = SystemColors.AppWorkspace;
             TimeTable.Dock = DockStyle.Top;
             TimeTable.Font = new Font("Stencil", 12F);
-            TimeTable.ForeColor = SystemColors.ActiveCaption;
+            TimeTable.ForeColor = SystemColors.ActiveCaptionText;
             TimeTable.Location = new Point(0, 187);
             TimeTable.Name = "TimeTable";
             TimeTable.Size = new Size(142, 28);
@@ -158,7 +160,7 @@
             StatusDrivers.BackColor = SystemColors.AppWorkspace;
             StatusDrivers.Dock = DockStyle.Top;
             StatusDrivers.Font = new Font("Stencil", 12F);
-            StatusDrivers.ForeColor = SystemColors.ActiveCaption;
+            StatusDrivers.ForeColor = SystemColors.ActiveCaptionText;
             StatusDrivers.Location = new Point(0, 160);
             StatusDrivers.Name = "StatusDrivers";
             StatusDrivers.Size = new Size(142, 27);
@@ -172,7 +174,7 @@
             Routes.BackColor = SystemColors.AppWorkspace;
             Routes.Dock = DockStyle.Top;
             Routes.Font = new Font("Stencil", 12F);
-            Routes.ForeColor = SystemColors.ActiveCaption;
+            Routes.ForeColor = SystemColors.ActiveCaptionText;
             Routes.Location = new Point(0, 130);
             Routes.Name = "Routes";
             Routes.Size = new Size(142, 30);
@@ -186,7 +188,7 @@
             Role.BackColor = SystemColors.AppWorkspace;
             Role.Dock = DockStyle.Top;
             Role.Font = new Font("Stencil", 12F);
-            Role.ForeColor = SystemColors.ActiveCaption;
+            Role.ForeColor = SystemColors.ActiveCaptionText;
             Role.Location = new Point(0, 104);
             Role.Name = "Role";
             Role.Size = new Size(142, 26);
@@ -200,7 +202,7 @@
             Drivers.BackColor = SystemColors.AppWorkspace;
             Drivers.Dock = DockStyle.Top;
             Drivers.Font = new Font("Stencil", 12F);
-            Drivers.ForeColor = SystemColors.ActiveCaption;
+            Drivers.ForeColor = SystemColors.ActiveCaptionText;
             Drivers.Location = new Point(0, 79);
             Drivers.Name = "Drivers";
             Drivers.Size = new Size(142, 25);
@@ -214,7 +216,7 @@
             Client.BackColor = SystemColors.AppWorkspace;
             Client.Dock = DockStyle.Top;
             Client.Font = new Font("Stencil", 12F);
-            Client.ForeColor = SystemColors.ActiveCaption;
+            Client.ForeColor = SystemColors.ActiveCaptionText;
             Client.Location = new Point(0, 53);
             Client.Name = "Client";
             Client.Size = new Size(142, 26);
@@ -228,7 +230,7 @@
             Avtorizacia.BackColor = SystemColors.AppWorkspace;
             Avtorizacia.Dock = DockStyle.Top;
             Avtorizacia.Font = new Font("Stencil", 12F);
-            Avtorizacia.ForeColor = SystemColors.ActiveCaption;
+            Avtorizacia.ForeColor = SystemColors.ActiveCaptionText;
             Avtorizacia.Location = new Point(0, 25);
             Avtorizacia.Name = "Avtorizacia";
             Avtorizacia.Size = new Size(142, 28);
@@ -242,7 +244,7 @@
             btAdmin.BackColor = SystemColors.AppWorkspace;
             btAdmin.Dock = DockStyle.Top;
             btAdmin.Font = new Font("Stencil", 12F);
-            btAdmin.ForeColor = SystemColors.ActiveCaption;
+            btAdmin.ForeColor = SystemColors.ActiveCaptionText;
             btAdmin.Location = new Point(0, 0);
             btAdmin.Name = "btAdmin";
             btAdmin.Size = new Size(142, 25);

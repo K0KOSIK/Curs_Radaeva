@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
             cancellation = new Button();
             save = new Button();
             text4 = new Label();
@@ -49,6 +51,8 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlDarkDark;
+            panel1.Controls.Add(dateTimePicker2);
+            panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(cancellation);
             panel1.Controls.Add(save);
             panel1.Controls.Add(text4);
@@ -68,6 +72,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.Location = new Point(278, 153);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 18;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Location = new Point(278, 80);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 17;
             // 
             // cancellation
             // 
@@ -92,6 +114,7 @@
             save.TabIndex = 15;
             save.Text = "СОХРАНИТЬ";
             save.UseVisualStyleBackColor = false;
+            save.Click += save_Click;
             // 
             // text4
             // 
@@ -238,5 +261,7 @@
         private TextBox data2;
         private TextBox data3;
         private TextBox data1;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
     }
 }

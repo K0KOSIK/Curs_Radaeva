@@ -59,7 +59,7 @@
             // 
             Login.AutoSize = true;
             Login.Font = new Font("Microsoft Sans Serif", 14.25F);
-            Login.ForeColor = SystemColors.ActiveCaption;
+            Login.ForeColor = SystemColors.ActiveCaptionText;
             Login.Location = new Point(333, 148);
             Login.Name = "Login";
             Login.Size = new Size(64, 24);
@@ -71,7 +71,7 @@
             // 
             pasword.AutoSize = true;
             pasword.Font = new Font("Microsoft Sans Serif", 14.25F);
-            pasword.ForeColor = SystemColors.ActiveCaption;
+            pasword.ForeColor = SystemColors.ActiveCaptionText;
             pasword.Location = new Point(333, 209);
             pasword.Name = "pasword";
             pasword.Size = new Size(76, 24);
@@ -83,7 +83,7 @@
             // 
             Avtorises.BackColor = SystemColors.ControlDarkDark;
             Avtorises.Font = new Font("Microsoft Sans Serif", 14.25F);
-            Avtorises.ForeColor = SystemColors.ActiveCaption;
+            Avtorises.ForeColor = SystemColors.ActiveCaptionText;
             Avtorises.Location = new Point(333, 295);
             Avtorises.Name = "Avtorises";
             Avtorises.Size = new Size(135, 35);
