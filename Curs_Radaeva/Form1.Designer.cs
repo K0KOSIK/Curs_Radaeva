@@ -148,7 +148,6 @@
             Avtoris_role.Name = "Avtoris_role";
             Avtoris_role.Size = new Size(135, 18);
             Avtoris_role.TabIndex = 7;
-            Avtoris_role.Text = "label3";
             Avtoris_role.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Avtorisation

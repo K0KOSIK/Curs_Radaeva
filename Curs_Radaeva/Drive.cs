@@ -14,12 +14,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Curs_Radaeva
 {
-    public partial class Admin : Form
+    public partial class Drive : Form
     {
         private Avtorisation _form1;
         public ActiveEntity activeEntity;
         public IsEdit isEdit;
-        public Admin(Avtorisation form1)
+        public Drive(Avtorisation form1)
         {
             InitializeComponent();
             this.FormClosed += Admin_FormClosed;
@@ -30,30 +30,22 @@ namespace Curs_Radaeva
             _form1.Show();
         }
 
-        private void Admin_Load(object sender, EventArgs e)
+        private void Drive_Load(object sender, EventArgs e)
         {
             Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Admins.ToList();
-            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.DataSource = context.Clients.ToList();
+            activeEntity = ActiveEntity.Client;
+            dataGridView1.Columns[5].Visible = false;
         }
 
         private void btAdmin_Click(object sender, EventArgs e)
         {
-            Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Admins.ToList();
-            dataGridView1.Columns[4].Visible = false;
-            activeEntity = ActiveEntity.Admin;
+
         }
 
         private void Avtorizacia_Click(object sender, EventArgs e)
         {
-            Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Authorizations.ToList();
-            activeEntity = ActiveEntity.Avtorizacium;
-            dataGridView1.Columns[4].Visible = false;
-            dataGridView1.Columns[5].Visible = false;
-            dataGridView1.Columns[6].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
+
         }
 
         private void Client_Click(object sender, EventArgs e)
@@ -76,10 +68,7 @@ namespace Curs_Radaeva
 
         private void Role_Click(object sender, EventArgs e)
         {
-            Ispr2525RadaevaVaKursachContext context = new();
-            dataGridView1.DataSource = context.Roles.ToList();
-            activeEntity = ActiveEntity.Role;
-            dataGridView1.Columns[2].Visible = false;
+
         }
 
         private void Routes_Click(object sender, EventArgs e)
@@ -143,21 +132,7 @@ namespace Curs_Radaeva
 
         private void UpdateInfo()
         {
-            if (dataGridView1.DataSource != null)
-            {
-                dataGridView1.DataSource = null;
-            }
-            Ispr2525RadaevaVaKursachContext context = new();
-            var Admins = context.Admins
-                .OrderBy(x => x.IdAdmin)
-                .Select(x => new
-                {
-                    x.IdAdmin,
-                    x.NameAdmin,
-                    x.TelAdmin,
-                    x.IdAuthorization,
-                });
-
+            
             if (dataGridView1.DataSource != null)
             {
                 dataGridView1.DataSource = null;
@@ -193,19 +168,6 @@ namespace Curs_Radaeva
                     x.TelDrivers,
                     x.IdStatusDrivers,
                     x.IdAuthorization,
-                });
-
-            if (dataGridView1.DataSource != null)
-            {
-                dataGridView1.DataSource = null;
-            }
-            Ispr2525RadaevaVaKursachContext context3 = new();
-            var Roles = context3.Roles
-                .OrderBy(x => x.IdRole)
-                .Select(x => new
-                {
-                    x.IdRole,
-                    x.NameRole,
                 });
 
             if (dataGridView1.DataSource != null)
@@ -273,82 +235,11 @@ namespace Curs_Radaeva
                     x.MaxSpeedTransport,
 
                 });
-
-            if (dataGridView1.DataSource != null)
-            {
-                dataGridView1.DataSource = null;
-            }
-            Ispr2525RadaevaVaKursachContext context8 = new();
-            var Authorizations = context6.Authorizations
-                .Include(x => x.IdRole)
-                .OrderBy(x => x.IdAuthorization)
-                .Select(x => new
-                {
-                    x.IdAuthorization,
-                    x.Login,
-                    x.Password,
-                    x.IdRole,
-
-                });
         }
 
         private void bt_add_Click(object sender, EventArgs e)
         {
             isEdit = IsEdit.N;
-            if (activeEntity == ActiveEntity.Admin)
-            {
-                try
-                {
-                    var Admin = new Models.Admin
-                    {
-                        IdAdmin = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value + 1,
-                        NameAdmin = "",
-                        TelAdmin = 0,
-                        IdAuthorization = 0,
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Admin, Admin);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context = new();
-                        dataGridView1.DataSource = context.Admins.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось добавить: " + ex.Message);
-                }
-            }
-            if (activeEntity == ActiveEntity.Avtorizacium)
-            {
-                try
-                {
-                    var Avtorizacium = new Models.Authorization
-                    {
-                        IdAuthorization = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value + 1,
-                        Login = "",
-                        Password = "",
-                        IdRole = 0,
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Avtorizacium, Avtorizacium);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context1 = new();
-                        dataGridView1.DataSource = context1.Authorizations.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось добавить: " + ex.Message);
-                }
-            }
             if (activeEntity == ActiveEntity.Client)
             {
                 try
@@ -397,31 +288,6 @@ namespace Curs_Radaeva
                     {
                         Ispr2525RadaevaVaKursachContext context3 = new();
                         dataGridView1.DataSource = context3.Drivers.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось добавить: " + ex.Message);
-                }
-            }
-            if (activeEntity == ActiveEntity.Role)
-            {
-                try
-                {
-                    var Role = new Role
-                    {
-                        IdRole = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value + 1,
-                        NameRole = "",
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Role, Role);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context4 = new();
-                        dataGridView1.DataSource = context4.Roles.ToList();
                         dataGridView1.Refresh();
                         this.Show();
                     }
@@ -570,60 +436,6 @@ namespace Curs_Radaeva
         private void bt_edit_Click(object sender, EventArgs e)
         {
             isEdit = IsEdit.Y;
-            if (activeEntity == ActiveEntity.Admin)
-            {
-                try
-                {
-                    var Admin = new Models.Admin
-                    {
-                        IdAdmin = ((int)dataGridView1.SelectedRows[0].Cells[0].Value),
-                        NameAdmin = ((string)dataGridView1.SelectedRows[0].Cells[1].Value),
-                        TelAdmin = (long)dataGridView1.SelectedRows[0].Cells[2].Value,
-                        IdAuthorization = (int)dataGridView1.SelectedRows[0].Cells[3].Value,
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Admin, Admin);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context = new();
-                        dataGridView1.DataSource = context.Admins.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось изменить: " + ex.Message);
-                }
-            }
-            if (activeEntity == ActiveEntity.Avtorizacium)
-            {
-                try
-                {
-                    var Authorization = new Models.Authorization
-                    {
-                        IdAuthorization = (int)dataGridView1.SelectedRows[0].Cells[0].Value,
-                        Login = (string)dataGridView1.SelectedRows[0].Cells[1].Value,
-                        Password = (string)dataGridView1.SelectedRows[0].Cells[2].Value,
-                        IdRole = (int)dataGridView1.SelectedRows[0].Cells[3].Value
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Avtorizacium, Authorization);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context1 = new();
-                        dataGridView1.DataSource = context1.Authorizations.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось изменить: " + ex.Message);
-                }
-            }
             if (activeEntity == ActiveEntity.Client)
             {
                 try
@@ -673,31 +485,6 @@ namespace Curs_Radaeva
                     {
                         Ispr2525RadaevaVaKursachContext context3 = new();
                         dataGridView1.DataSource = context3.Drivers.ToList();
-                        dataGridView1.Refresh();
-                        this.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Не получилось изменить: " + ex.Message);
-                }
-            }
-            if (activeEntity == ActiveEntity.Role)
-            {
-                try
-                {
-                    var Role = new Role
-                    {
-                        IdRole = (int)dataGridView1.SelectedRows[0].Cells[0].Value,
-                        NameRole = (string)dataGridView1.SelectedRows[0].Cells[1].Value,
-                    };
-                    this.Hide();
-                    var editing = new Redact(ActiveEntity.Role, Role);
-                    editing.isEdit = isEdit;
-                    if (editing.ShowDialog() == DialogResult.OK)
-                    {
-                        Ispr2525RadaevaVaKursachContext context4 = new();
-                        dataGridView1.DataSource = context4.Roles.ToList();
                         dataGridView1.Refresh();
                         this.Show();
                     }
@@ -844,67 +631,6 @@ namespace Curs_Radaeva
 
         private void bt_delete_Click(object sender, EventArgs e)
         {
-            if (activeEntity == ActiveEntity.Admin)
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    var result = MessageBox.Show("Удалить?", "?", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        Ispr2525RadaevaVaKursachContext context = new();
-                        var Admins = context.Admins.Where(x => x.IdAdmin == (int)dataGridView1.SelectedRows[0].Cells[0].Value);
-                        try
-                        {
-                            Admins.ExecuteDelete();
-                            context.SaveChanges();
-                            UpdateInfo();
-                            dataGridView1.DataSource = context.Admins.ToList();
-                            dataGridView1.Columns[4].Visible = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Не получилось удалить: " + ex.Message);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Выберете строчку для удаления");
-                }
-            }
-
-            if (activeEntity == ActiveEntity.Avtorizacium)
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    var result = MessageBox.Show("Удалить?", "?", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        Ispr2525RadaevaVaKursachContext contex = new();
-                        var Authorizations = contex.Authorizations.Where(x => x.IdAuthorization == (int)dataGridView1.SelectedRows[0].Cells[0].Value);
-                        try
-                        {
-                            Authorizations.ExecuteDelete();
-                            contex.SaveChanges();
-                            UpdateInfo();
-                            dataGridView1.DataSource = contex.Authorizations.ToList();
-                            dataGridView1.Columns[4].Visible = false;
-                            dataGridView1.Columns[5].Visible = false;
-                            dataGridView1.Columns[6].Visible = false;
-                            dataGridView1.Columns[7].Visible = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Не получилось удалить: " + ex.Message);
-                        }
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Выберете строчку для удаления");
-                }
-            }
             if (activeEntity == ActiveEntity.Client)
             {
                 if (dataGridView1.SelectedRows.Count > 0)
@@ -953,38 +679,6 @@ namespace Curs_Radaeva
                             dataGridView1.Columns[6].Visible = false;
                             dataGridView1.Columns[7].Visible = false;
                             dataGridView1.Columns[8].Visible = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Не получилось удалить: " + ex.Message);
-                        }
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Выберете строчку для удаления");
-                }
-
-            }
-
-            if (activeEntity == ActiveEntity.Role)
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    var result = MessageBox.Show("Удалить?", "?", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        Ispr2525RadaevaVaKursachContext contex4 = new();
-                        var Role = contex4.Roles.Where(x => x.IdRole == (int)dataGridView1.SelectedRows[0].Cells[0].Value);
-                        try
-                        {
-                            Role.ExecuteDelete();
-                            contex4.SaveChanges();
-                            UpdateInfo();
-                            dataGridView1.DataSource = contex4.Roles.ToList();
-                            dataGridView1.Columns[2].Visible = false;
-
                         }
                         catch (Exception ex)
                         {

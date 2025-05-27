@@ -52,8 +52,8 @@ namespace Curs_Radaeva
                     Avtoris_role.Text = "Клиент";
                     Avtoris_role.ForeColor = Color.ForestGreen;
                     await Task.Delay(1500);
-                    //Deputy_Director form3 = new Deputy_Director(this);
-                    //form3.Show();
+                    Klients form3 = new Klients(this);
+                    form3.Show();
                 }
                 if (authorization.IdRole == 3)
                 {
@@ -61,8 +61,8 @@ namespace Curs_Radaeva
                     Avtoris_role.Text = "Водитель";
                     Avtoris_role.ForeColor = Color.ForestGreen;
                     await Task.Delay(1500);
-                    //director form3 = new director(this);
-                    //form3.Show();
+                    Drive form3 = new Drive(this);
+                    form3.Show();
                 }
                 this.Hide();
                 textBox1.Text = "";
