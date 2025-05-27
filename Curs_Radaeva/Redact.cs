@@ -301,7 +301,37 @@ namespace Curs_Radaeva
             dateTimePicker2.Visible = false;
             dateTimePicker3.Visible = false;
         }
+        private void Redact_Load(object sender, EventArgs e)
+        {
+            if (x == ActiveEntity.TimeTable && isEdit == IsEdit.Y)
+            {
+                using (var context = new Ispr2525RadaevaVaKursachContext())
+                {
+                    // Получаем pm из БД IdTimeTable, IdRoutes, IdTransport, IdDrivers, DepartureTime, ArrivalTime
+                    var pm = context.TimeTables
+                        .FirstOrDefault(p => p.IdTimeTable == Convert.ToInt32(data1.Text) &&
+                        p.IdRoutes == Convert.ToInt32(data2.Text) && p.IdDrivers == Convert.ToInt32(data3.Text) && 
+                        p.IdDrivers == Convert.ToInt32(data4.Text));
 
+                    if (pm != null)
+                    {
+                        data1.Text = pm.IdTimeTable.ToString();
+                        data2.Text = pm.IdRoutes.ToString();
+                        data3.Text = pm.IdTransport.ToString();
+                        data4.Text = pm.IdDrivers.ToString();
+                        data1.Tag = pm.IdTimeTable;
+                        data2.Tag = pm.IdRoutes;
+                        data3.Tag = pm.IdTransport;
+                        data4.Tag = pm.IdDrivers;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись не найдена!");
+                        this.Close();
+                    }
+                }
+            }
+        }
         private void save_Click(object sender, EventArgs e)
         {
             int Count;
@@ -526,59 +556,74 @@ namespace Curs_Radaeva
                         {
                             using (var context15 = new Ispr2525RadaevaVaKursachContext())
                             {
-                                int oldProjectId = (data_entry.Tag as int?) ?? 0;
-                                int oldMaterialId = (data_entry2.Tag as int?) ?? 0;
-                                int projectId = Convert.ToInt32(data_entry.Text);
-                                int materialIdNew = Convert.ToInt32(data_entry2.Text);
-                                decimal quantity = decimal.Parse(data_entry3.Text.Trim().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture);
+                                int oldIdTimeTable = (data1.Tag as int?) ?? 0;//IdTimeTable, IdRoutes, IdTransport, IdDrivers, DepartureTime, ArrivalTime
+                                int oldIdRoutes = (data2.Tag as int?) ?? 0;
+                                int oldIdTransport = (data3.Tag as int?) ?? 0;
+                                int oldIdDrivers = (data4.Tag as int?) ?? 0;
+                                int IdTimeTable = Convert.ToInt32(data1.Text);
+                                int IdRoutesNew = Convert.ToInt32(data2.Text);
+                                int IdTransportNew = Convert.ToInt32(data3.Text);
+                                int IdDriversNew = Convert.ToInt32(data4.Text);
+                                TimeOnly DepartureTime = TimeOnly.FromDateTime(dateTimePicker2.Value);
+                                TimeOnly ArrivalTime = TimeOnly.FromDateTime(dateTimePicker3.Value);
 
                                 // Проверка существования проекта и материала
-                                if (!context6.Projects.Any(p => p.ProjectId == projectId) ||
-                                    !context6.Materials.Any(m => m.MaterialId == materialIdNew))
+                                if (!context15.TimeTables.Any(p => p.IdTimeTable == IdTimeTable) || 
+                                    !context15.Routes.Any(p => p.IdRoutes == IdRoutesNew) ||
+                                    !context15.Transports.Any(m => m.IdTransport == IdTransportNew) || 
+                                    !context15.Drivers.Any(p => p.IdDrivers == IdDriversNew))
                                 {
                                     MessageBox.Show("Проект или материал не найден!");
                                     return;
                                 }
 
                                 // Проверка на дубликат новой записи
-                                if (context6.ProjectMaterials.Any(p => p.ProjectId == projectId && p.MaterialId == materialIdNew))
+                                if (context15.TimeTables.Any(p => p.IdTimeTable == IdTimeTable && p.IdRoutes == IdRoutesNew &&
+                                    p.IdTransport == IdTransportNew && p.IdDrivers == IdDriversNew))
                                 {
                                     MessageBox.Show("Такая связь уже существует!");
                                     return;
                                 }
 
                                 // Удаление старой записи
-                                var oldPm = context6.ProjectMaterials
-                                    .FirstOrDefault(p => p.ProjectId == oldProjectId && p.MaterialId == oldMaterialId);
+                                var oldPm = context15.TimeTables
+                                    .FirstOrDefault(p => p.IdTimeTable == oldIdTimeTable && p.IdRoutes == oldIdRoutes && 
+                                    p.IdTransport == oldIdTransport && p.IdDrivers == oldIdDrivers);
+                                //IdTimeTable, IdRoutes, IdTransport, IdDrivers, DepartureTime, ArrivalTime
 
                                 if (oldPm == null)
                                 {
-                                    context6.ProjectMaterials.Add(new ProjectMaterial
+                                    context15.TimeTables.Add(new TimeTable
                                     {
-                                        ProjectId = projectId,
-                                        MaterialId = materialIdNew,
-                                        Quantity = quantity
+                                        IdTimeTable = IdTimeTable,
+                                        IdRoutes = IdRoutesNew,
+                                        IdTransport = IdTransportNew,
+                                        IdDrivers = IdDriversNew,
+                                        DepartureTime = DepartureTime,
+                                        ArrivalTime = ArrivalTime
                                     });
 
-                                    context6.SaveChanges();
+                                    context15.SaveChanges();
                                     break;
                                 }
 
-                                context6.ProjectMaterials.Remove(oldPm);
+                                context15.TimeTables.Remove(oldPm);
 
                                 // Добавление новой записи
-                                context6.ProjectMaterials.Add(new ProjectMaterial
+                                context15.TimeTables.Add(new TimeTable
                                 {
-                                    ProjectId = projectId,
-                                    MaterialId = materialIdNew,
-                                    Quantity = quantity
+                                    IdTimeTable = IdTimeTable,
+                                    IdRoutes = IdRoutesNew,
+                                    IdTransport = IdTransportNew,
+                                    IdDrivers = IdDriversNew,
+                                    DepartureTime = DepartureTime,
+                                    ArrivalTime = ArrivalTime
                                 });
 
-                                context6.SaveChanges();
+                                context15.SaveChanges();
                             }
                         }
                         break;
-
                 }
                 this.DialogResult = DialogResult.OK;
                 this.Close();

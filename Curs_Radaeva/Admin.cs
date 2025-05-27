@@ -93,7 +93,6 @@ namespace Curs_Radaeva
             try
             {
                 Ispr2525RadaevaVaKursachContext context = new();
-                //dataGridView1.DataSource = context.TimeTables.ToList();
                 var data = context.TimeTables
                     .Include(t => t.Route)
                     .Include(t => t.Driver)
@@ -474,7 +473,7 @@ namespace Curs_Radaeva
                     MessageBox.Show("Не получилось добавить: " + ex.Message);
                 }
             }
-            if (activeEntity == ActiveEntity.StatusDriver)
+            if (activeEntity == ActiveEntity.TimeTable)
             {
                 try
                 {
@@ -492,8 +491,30 @@ namespace Curs_Radaeva
                     editing.isEdit = isEdit;
                     if (editing.ShowDialog() == DialogResult.OK)
                     {
-                        Ispr2525RadaevaVaKursachContext context7 = new();
-                        dataGridView1.DataSource = context7.TimeTables.ToList();
+                        Ispr2525RadaevaVaKursachContext context = new();
+                        var data = context.TimeTables
+                            .Include(t => t.Route)
+                            .Include(t => t.Driver)
+                            .Include(t => t.Transport)
+                            .Select(t => new
+                            {
+                                IdTimeTable = t.IdTimeTable,
+                                IdRoutes = t.IdRoutes,
+                                IdTransport = t.IdTransport,
+                                IdDrivers = t.IdDrivers,
+                                StartLocationRoutes = t.Route.StartLocationRoutes,
+                                EndLocationRoutes = t.Route.EndLocationRoutes,
+                                NameDrivers = t.Driver.NameDrivers,
+                                LicenseNumberDrivers = t.Driver.LicenseNumberDrivers,
+                                NumberplateTransport = t.Transport.NumberplateTransport,
+                                DepartureTime = t.DepartureTime,
+                                ArrivalTime = t.ArrivalTime,
+                            }).ToList();
+                        dataGridView1.DataSource = data;
+                        activeEntity = ActiveEntity.TimeTable;
+                        dataGridView1.Columns[1].Visible = false;
+                        dataGridView1.Columns[2].Visible = false;
+                        dataGridView1.Columns[3].Visible = false;
                         dataGridView1.Refresh();
                         this.Show();
                     }
@@ -710,16 +731,38 @@ namespace Curs_Radaeva
                         IdRoutes = (int)dataGridView1.SelectedRows[0].Cells[1].Value,
                         IdTransport = (int)dataGridView1.SelectedRows[0].Cells[2].Value,
                         IdDrivers = (int)dataGridView1.SelectedRows[0].Cells[3].Value,
-                        DepartureTime = (TimeOnly)dataGridView1.SelectedRows[0].Cells[4].Value,
-                        ArrivalTime = (TimeOnly)dataGridView1.SelectedRows[0].Cells[5].Value,
+                        DepartureTime = (TimeOnly)dataGridView1.SelectedRows[0].Cells[9].Value,
+                        ArrivalTime = (TimeOnly)dataGridView1.SelectedRows[0].Cells[10].Value,
                     };
                     this.Hide();
                     var editing = new Redact(ActiveEntity.TimeTable, TimeTable);
                     editing.isEdit = isEdit;
                     if (editing.ShowDialog() == DialogResult.OK)
                     {
-                        Ispr2525RadaevaVaKursachContext context6 = new();
-                        dataGridView1.DataSource = context6.TimeTables.ToList();
+                        Ispr2525RadaevaVaKursachContext context = new();
+                        var data = context.TimeTables
+                            .Include(t => t.Route)
+                            .Include(t => t.Driver)
+                            .Include(t => t.Transport)
+                            .Select(t => new
+                            {
+                                IdTimeTable = t.IdTimeTable,
+                                IdRoutes = t.IdRoutes,
+                                IdTransport = t.IdTransport,
+                                IdDrivers = t.IdDrivers,
+                                StartLocationRoutes = t.Route.StartLocationRoutes,
+                                EndLocationRoutes = t.Route.EndLocationRoutes,
+                                NameDrivers = t.Driver.NameDrivers,
+                                LicenseNumberDrivers = t.Driver.LicenseNumberDrivers,
+                                NumberplateTransport = t.Transport.NumberplateTransport,
+                                DepartureTime = t.DepartureTime,
+                                ArrivalTime = t.ArrivalTime,
+                            }).ToList();
+                        dataGridView1.DataSource = data;
+                        activeEntity = ActiveEntity.TimeTable;
+                        dataGridView1.Columns[1].Visible = false;
+                        dataGridView1.Columns[2].Visible = false;
+                        dataGridView1.Columns[3].Visible = false;
                         dataGridView1.Refresh();
                         this.Show();
                     }
@@ -1009,7 +1052,30 @@ namespace Curs_Radaeva
                             TimeTable.ExecuteDelete();
                             contex6.SaveChanges();
                             UpdateInfo();
-                            dataGridView1.DataSource = contex6.TimeTables.ToList();
+                            Ispr2525RadaevaVaKursachContext context = new();
+                            var data = context.TimeTables
+                                .Include(t => t.Route)
+                                .Include(t => t.Driver)
+                                .Include(t => t.Transport)
+                                .Select(t => new
+                                {
+                                    IdTimeTable = t.IdTimeTable,
+                                    IdRoutes = t.IdRoutes,
+                                    IdTransport = t.IdTransport,
+                                    IdDrivers = t.IdDrivers,
+                                    StartLocationRoutes = t.Route.StartLocationRoutes,
+                                    EndLocationRoutes = t.Route.EndLocationRoutes,
+                                    NameDrivers = t.Driver.NameDrivers,
+                                    LicenseNumberDrivers = t.Driver.LicenseNumberDrivers,
+                                    NumberplateTransport = t.Transport.NumberplateTransport,
+                                    DepartureTime = t.DepartureTime,
+                                    ArrivalTime = t.ArrivalTime,
+                                }).ToList();
+                            dataGridView1.DataSource = data;
+                            activeEntity = ActiveEntity.TimeTable;
+                            dataGridView1.Columns[1].Visible = false;
+                            dataGridView1.Columns[2].Visible = false;
+                            dataGridView1.Columns[3].Visible = false;
                         }
                         catch (Exception ex)
                         {
