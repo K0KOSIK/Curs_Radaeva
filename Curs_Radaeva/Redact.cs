@@ -350,7 +350,7 @@ namespace Curs_Radaeva
                         {
                             MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                             isError = IsError.Y;
-                            break;
+                            return;
                         }
                         Admin.IdAuthorization = Convert.ToInt32(data4.Text);
                         Ispr2525RadaevaVaKursachContext context = new();
@@ -371,7 +371,7 @@ namespace Curs_Radaeva
                         {
                             MessageBox.Show("IdRole не может быть меньше нуля или больше:" + Count);
                             isError = IsError.Y;
-                            break;
+                            return;
                         }
                         Avtorizacium.IdRole = Convert.ToInt32(data4.Text);
                         Ispr2525RadaevaVaKursachContext context2 = new();
@@ -397,7 +397,7 @@ namespace Curs_Radaeva
                         {
                             MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                             isError = IsError.Y;
-                            break;
+                            return;
                         }
                         Client.IdAvtorizacia = Convert.ToInt32(data5.Text);
                         Ispr2525RadaevaVaKursachContext context3 = new();
@@ -419,7 +419,7 @@ namespace Curs_Radaeva
                         {
                             MessageBox.Show("IdStatusDrivers не может быть меньше нуля или больше:" + Count);
                             isError = IsError.Y;
-                            break;
+                            return;
                         }
                         Driver.IdStatusDrivers = Convert.ToInt32(data5.Text);
                         Ispr2525RadaevaVaKursachContext context14 = new();
@@ -428,7 +428,7 @@ namespace Curs_Radaeva
                         {
                             MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);
                             isError = IsError.Y;
-                            break;
+                            return;
                         }
                         Driver.IdAuthorization = Convert.ToInt32(data6.Text);
                         Ispr2525RadaevaVaKursachContext context4 = new();
@@ -509,21 +509,22 @@ namespace Curs_Radaeva
                         {
                             TimeTable TimeTable = new();
                             Ispr2525RadaevaVaKursachContext context8 = new();
-                            Count = context8.TimeTables.Count();
-                            if (Convert.ToInt32(data1.Text) > Count || Convert.ToInt32(data1.Text) < 0)
-                            {
-                                MessageBox.Show("IdTimeTable не может быть меньше нуля или больше:" + Count);
-                                isError = IsError.Y;
-                                break;
-                            }
-                            else
-                                TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
+                            //Count = context8.TimeTables.Count();
+                            //if (Convert.ToInt32(data1.Text) > Count || Convert.ToInt32(data1.Text) < 0)
+                            //{
+                            //    MessageBox.Show("IdTimeTable не может быть меньше нуля или больше:" + Count);
+                            //    isError = IsError.Y;
+                            //    break;
+                            //}
+                            //else
+                            TimeTable.IdTimeTable = Convert.ToInt32(data1.Text);
                             Count = context8.Routes.Count();
                             if (Convert.ToInt32(data2.Text) > Count || Convert.ToInt32(data2.Text) < 0)
                             {
                                 MessageBox.Show("IdRoutes не может быть меньше нуля или больше:" + Count);
                                 isError = IsError.Y;
-                                break;
+                                return;
+                                return;
                             }
                             else
                                 TimeTable.IdRoutes = Convert.ToInt32(data2.Text);
@@ -532,7 +533,7 @@ namespace Curs_Radaeva
                             {
                                 MessageBox.Show("IdTransport не может быть меньше нуля или больше:" + Count);
                                 isError = IsError.Y;
-                                break;
+                                return;
                             }
                             else
                                 TimeTable.IdTransport = Convert.ToInt32(data3.Text);
@@ -541,7 +542,7 @@ namespace Curs_Radaeva
                             {
                                 MessageBox.Show("IdTransport не может быть меньше нуля или больше:" + Count);
                                 isError = IsError.Y;
-                                break;
+                                return;
                             }
                             else
                                 TimeTable.IdDrivers = Convert.ToInt32(data4.Text);

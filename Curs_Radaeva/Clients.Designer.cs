@@ -1,6 +1,6 @@
 ﻿namespace Curs_Radaeva
 {
-    partial class Klients
+    partial class Clients
     {
         /// <summary>
         /// Required designer variable.

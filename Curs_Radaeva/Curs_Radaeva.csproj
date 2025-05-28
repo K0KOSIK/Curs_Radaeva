@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Klients.cs">
+    <Compile Update="Clients.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Drive.cs">

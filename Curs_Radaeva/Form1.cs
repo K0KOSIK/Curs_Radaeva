@@ -93,7 +93,7 @@ namespace Curs_Radaeva
                     Avtoris_role.Text = "Клиент";
                     Avtoris_role.ForeColor = Color.ForestGreen;
                     await Task.Delay(1500);
-                    Klients form3 = new Klients(this);
+                    Clients form3 = new Clients(this);
                     form3.Show();
                 }
                 if (authorization.IdRole == 3)

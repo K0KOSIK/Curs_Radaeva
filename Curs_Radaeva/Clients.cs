@@ -14,12 +14,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Curs_Radaeva
 {
-    public partial class Klients : Form
+    public partial class Clients : Form
     {
         private Avtorisation _form1;
         public ActiveEntity activeEntity;
         public IsEdit isEdit;
-        public Klients(Avtorisation form1)
+        public Clients(Avtorisation form1)
         {
             InitializeComponent();
             this.FormClosed += Klients_FormClosed;
