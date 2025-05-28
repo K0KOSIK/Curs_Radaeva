@@ -13,7 +13,7 @@ public partial class Client
 
     public DateOnly DataRegisteredClient { get; set; }
 
-    public int? IdAvtorizacia { get; set; }
+    public int IdAvtorizacia { get; set; }
 
     public virtual Authorization? IdAvtorizaciaNavigation { get; set; }
 }

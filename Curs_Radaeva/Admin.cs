@@ -354,7 +354,7 @@ namespace Curs_Radaeva
                         IdAdmin = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value + 1,
                         NameAdmin = "",
                         TelAdmin = 0,
-                        IdAuthorization = 0,
+                        IdAuthorization = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Value + 1,
                     };
                     this.Hide();
                     var editing = new Redact(ActiveEntity.Admin, Admin);

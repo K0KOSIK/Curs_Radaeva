@@ -11,7 +11,7 @@ public partial class Admin
 
     public long TelAdmin { get; set; }
 
-    public int? IdAuthorization { get; set; }
+    public int IdAuthorization { get; set; }
 
     public virtual Authorization? IdAuthorizationNavigation { get; set; }
 }
