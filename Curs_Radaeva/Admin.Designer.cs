@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            bt_delete = new Button();
-            bt_edit = new Button();
             bt_add = new Button();
-            panel = new Panel();
+            bt_edit = new Button();
+            bt_delete = new Button();
             Transport = new Button();
             TimeTable = new Button();
             StatusDrivers = new Button();
@@ -55,10 +54,9 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlDarkDark;
-            panel1.Controls.Add(bt_delete);
-            panel1.Controls.Add(bt_edit);
             panel1.Controls.Add(bt_add);
-            panel1.Controls.Add(panel);
+            panel1.Controls.Add(bt_edit);
+            panel1.Controls.Add(bt_delete);
             panel1.Controls.Add(Transport);
             panel1.Controls.Add(TimeTable);
             panel1.Controls.Add(StatusDrivers);
@@ -74,67 +72,61 @@
             panel1.Size = new Size(142, 415);
             panel1.TabIndex = 0;
             // 
-            // bt_delete
-            // 
-            bt_delete.BackColor = SystemColors.AppWorkspace;
-            bt_delete.Dock = DockStyle.Top;
-            bt_delete.Font = new Font("Stencil", 12F);
-            bt_delete.ForeColor = SystemColors.ActiveCaptionText;
-            bt_delete.Location = new Point(0, 385);
-            bt_delete.Name = "bt_delete";
-            bt_delete.Size = new Size(142, 26);
-            bt_delete.TabIndex = 9;
-            bt_delete.Text = "DELETE";
-            bt_delete.UseVisualStyleBackColor = false;
-            bt_delete.Click += bt_delete_Click;
-            // 
-            // bt_edit
-            // 
-            bt_edit.BackColor = SystemColors.AppWorkspace;
-            bt_edit.Dock = DockStyle.Top;
-            bt_edit.Font = new Font("Stencil", 12F);
-            bt_edit.ForeColor = SystemColors.ActiveCaptionText;
-            bt_edit.Location = new Point(0, 359);
-            bt_edit.Name = "bt_edit";
-            bt_edit.Size = new Size(142, 26);
-            bt_edit.TabIndex = 10;
-            bt_edit.Text = "EDIT";
-            bt_edit.UseVisualStyleBackColor = false;
-            bt_edit.Click += bt_edit_Click;
-            // 
             // bt_add
             // 
-            bt_add.BackColor = SystemColors.AppWorkspace;
-            bt_add.Dock = DockStyle.Top;
-            bt_add.Font = new Font("Stencil", 12F);
-            bt_add.ForeColor = SystemColors.ActiveCaptionText;
-            bt_add.Location = new Point(0, 335);
+            bt_add.BackColor = SystemColors.ControlDarkDark;
+            bt_add.FlatAppearance.BorderSize = 0;
+            bt_add.FlatStyle = FlatStyle.Flat;
+            bt_add.Font = new Font("Microsoft Sans Serif", 12F);
+            bt_add.ForeColor = Color.White;
+            bt_add.Location = new Point(0, 323);
             bt_add.Name = "bt_add";
-            bt_add.Size = new Size(142, 24);
+            bt_add.Size = new Size(140, 30);
             bt_add.TabIndex = 11;
-            bt_add.Text = "ADD";
+            bt_add.Text = "Add";
             bt_add.UseVisualStyleBackColor = false;
             bt_add.Click += bt_add_Click;
             // 
-            // panel
+            // bt_edit
             // 
-            panel.BackColor = Color.FromArgb(64, 64, 64);
-            panel.Dock = DockStyle.Top;
-            panel.ForeColor = SystemColors.ActiveCaptionText;
-            panel.Location = new Point(0, 241);
-            panel.Name = "panel";
-            panel.Size = new Size(142, 94);
-            panel.TabIndex = 12;
+            bt_edit.BackColor = SystemColors.ControlDarkDark;
+            bt_edit.FlatAppearance.BorderSize = 0;
+            bt_edit.FlatStyle = FlatStyle.Flat;
+            bt_edit.Font = new Font("Microsoft Sans Serif", 12F);
+            bt_edit.ForeColor = Color.White;
+            bt_edit.Location = new Point(0, 353);
+            bt_edit.Name = "bt_edit";
+            bt_edit.Size = new Size(140, 30);
+            bt_edit.TabIndex = 10;
+            bt_edit.Text = "Edit";
+            bt_edit.UseVisualStyleBackColor = false;
+            bt_edit.Click += bt_edit_Click;
+            // 
+            // bt_delete
+            // 
+            bt_delete.BackColor = SystemColors.ControlDarkDark;
+            bt_delete.FlatAppearance.BorderSize = 0;
+            bt_delete.FlatStyle = FlatStyle.Flat;
+            bt_delete.Font = new Font("Microsoft Sans Serif", 12F);
+            bt_delete.ForeColor = Color.White;
+            bt_delete.Location = new Point(-1, 383);
+            bt_delete.Name = "bt_delete";
+            bt_delete.Size = new Size(140, 30);
+            bt_delete.TabIndex = 9;
+            bt_delete.Text = "Delete";
+            bt_delete.UseVisualStyleBackColor = false;
+            bt_delete.Click += bt_delete_Click;
             // 
             // Transport
             // 
-            Transport.BackColor = SystemColors.AppWorkspace;
-            Transport.Dock = DockStyle.Top;
-            Transport.Font = new Font("Stencil", 12F);
-            Transport.ForeColor = SystemColors.ActiveCaptionText;
-            Transport.Location = new Point(0, 215);
+            Transport.BackColor = SystemColors.ControlDarkDark;
+            Transport.FlatAppearance.BorderSize = 0;
+            Transport.FlatStyle = FlatStyle.Flat;
+            Transport.Font = new Font("Microsoft Sans Serif", 12F);
+            Transport.ForeColor = Color.White;
+            Transport.Location = new Point(0, 240);
             Transport.Name = "Transport";
-            Transport.Size = new Size(142, 26);
+            Transport.Size = new Size(140, 30);
             Transport.TabIndex = 8;
             Transport.Text = "Transport";
             Transport.UseVisualStyleBackColor = false;
@@ -142,13 +134,14 @@
             // 
             // TimeTable
             // 
-            TimeTable.BackColor = SystemColors.AppWorkspace;
-            TimeTable.Dock = DockStyle.Top;
-            TimeTable.Font = new Font("Stencil", 12F);
-            TimeTable.ForeColor = SystemColors.ActiveCaptionText;
-            TimeTable.Location = new Point(0, 187);
+            TimeTable.BackColor = SystemColors.ControlDarkDark;
+            TimeTable.FlatAppearance.BorderSize = 0;
+            TimeTable.FlatStyle = FlatStyle.Flat;
+            TimeTable.Font = new Font("Microsoft Sans Serif", 12F);
+            TimeTable.ForeColor = Color.White;
+            TimeTable.Location = new Point(0, 210);
             TimeTable.Name = "TimeTable";
-            TimeTable.Size = new Size(142, 28);
+            TimeTable.Size = new Size(140, 30);
             TimeTable.TabIndex = 7;
             TimeTable.Text = "TimeTable";
             TimeTable.UseVisualStyleBackColor = false;
@@ -156,13 +149,14 @@
             // 
             // StatusDrivers
             // 
-            StatusDrivers.BackColor = SystemColors.AppWorkspace;
-            StatusDrivers.Dock = DockStyle.Top;
-            StatusDrivers.Font = new Font("Stencil", 12F);
-            StatusDrivers.ForeColor = SystemColors.ActiveCaptionText;
-            StatusDrivers.Location = new Point(0, 160);
+            StatusDrivers.BackColor = SystemColors.ControlDarkDark;
+            StatusDrivers.FlatAppearance.BorderSize = 0;
+            StatusDrivers.FlatStyle = FlatStyle.Flat;
+            StatusDrivers.Font = new Font("Microsoft Sans Serif", 12F);
+            StatusDrivers.ForeColor = Color.White;
+            StatusDrivers.Location = new Point(0, 180);
             StatusDrivers.Name = "StatusDrivers";
-            StatusDrivers.Size = new Size(142, 27);
+            StatusDrivers.Size = new Size(140, 30);
             StatusDrivers.TabIndex = 6;
             StatusDrivers.Text = "StatusDrivers";
             StatusDrivers.UseVisualStyleBackColor = false;
@@ -170,13 +164,14 @@
             // 
             // Routes
             // 
-            Routes.BackColor = SystemColors.AppWorkspace;
-            Routes.Dock = DockStyle.Top;
-            Routes.Font = new Font("Stencil", 12F);
-            Routes.ForeColor = SystemColors.ActiveCaptionText;
-            Routes.Location = new Point(0, 130);
+            Routes.BackColor = SystemColors.ControlDarkDark;
+            Routes.FlatAppearance.BorderSize = 0;
+            Routes.FlatStyle = FlatStyle.Flat;
+            Routes.Font = new Font("Microsoft Sans Serif", 12F);
+            Routes.ForeColor = Color.White;
+            Routes.Location = new Point(0, 150);
             Routes.Name = "Routes";
-            Routes.Size = new Size(142, 30);
+            Routes.Size = new Size(140, 30);
             Routes.TabIndex = 5;
             Routes.Text = "Routes";
             Routes.UseVisualStyleBackColor = false;
@@ -184,13 +179,14 @@
             // 
             // Role
             // 
-            Role.BackColor = SystemColors.AppWorkspace;
-            Role.Dock = DockStyle.Top;
-            Role.Font = new Font("Stencil", 12F);
-            Role.ForeColor = SystemColors.ActiveCaptionText;
-            Role.Location = new Point(0, 104);
+            Role.BackColor = SystemColors.ControlDarkDark;
+            Role.FlatAppearance.BorderSize = 0;
+            Role.FlatStyle = FlatStyle.Flat;
+            Role.Font = new Font("Microsoft Sans Serif", 12F);
+            Role.ForeColor = Color.White;
+            Role.Location = new Point(0, 120);
             Role.Name = "Role";
-            Role.Size = new Size(142, 26);
+            Role.Size = new Size(140, 30);
             Role.TabIndex = 4;
             Role.Text = "Role";
             Role.UseVisualStyleBackColor = false;
@@ -198,13 +194,14 @@
             // 
             // Drivers
             // 
-            Drivers.BackColor = SystemColors.AppWorkspace;
-            Drivers.Dock = DockStyle.Top;
-            Drivers.Font = new Font("Stencil", 12F);
-            Drivers.ForeColor = SystemColors.ActiveCaptionText;
-            Drivers.Location = new Point(0, 79);
+            Drivers.BackColor = SystemColors.ControlDarkDark;
+            Drivers.FlatAppearance.BorderSize = 0;
+            Drivers.FlatStyle = FlatStyle.Flat;
+            Drivers.Font = new Font("Microsoft Sans Serif", 12F);
+            Drivers.ForeColor = Color.White;
+            Drivers.Location = new Point(0, 90);
             Drivers.Name = "Drivers";
-            Drivers.Size = new Size(142, 25);
+            Drivers.Size = new Size(140, 30);
             Drivers.TabIndex = 3;
             Drivers.Text = "Drivers";
             Drivers.UseVisualStyleBackColor = false;
@@ -212,13 +209,14 @@
             // 
             // Client
             // 
-            Client.BackColor = SystemColors.AppWorkspace;
-            Client.Dock = DockStyle.Top;
-            Client.Font = new Font("Stencil", 12F);
-            Client.ForeColor = SystemColors.ActiveCaptionText;
-            Client.Location = new Point(0, 53);
+            Client.BackColor = SystemColors.ControlDarkDark;
+            Client.FlatAppearance.BorderSize = 0;
+            Client.FlatStyle = FlatStyle.Flat;
+            Client.Font = new Font("Microsoft Sans Serif", 12F);
+            Client.ForeColor = Color.White;
+            Client.Location = new Point(0, 60);
             Client.Name = "Client";
-            Client.Size = new Size(142, 26);
+            Client.Size = new Size(140, 30);
             Client.TabIndex = 2;
             Client.Text = "Client";
             Client.UseVisualStyleBackColor = false;
@@ -226,13 +224,14 @@
             // 
             // Avtorizacia
             // 
-            Avtorizacia.BackColor = SystemColors.AppWorkspace;
-            Avtorizacia.Dock = DockStyle.Top;
-            Avtorizacia.Font = new Font("Stencil", 12F);
-            Avtorizacia.ForeColor = SystemColors.ActiveCaptionText;
-            Avtorizacia.Location = new Point(0, 25);
+            Avtorizacia.BackColor = SystemColors.ControlDarkDark;
+            Avtorizacia.FlatAppearance.BorderSize = 0;
+            Avtorizacia.FlatStyle = FlatStyle.Flat;
+            Avtorizacia.Font = new Font("Microsoft Sans Serif", 12F);
+            Avtorizacia.ForeColor = Color.White;
+            Avtorizacia.Location = new Point(0, 30);
             Avtorizacia.Name = "Avtorizacia";
-            Avtorizacia.Size = new Size(142, 28);
+            Avtorizacia.Size = new Size(140, 30);
             Avtorizacia.TabIndex = 1;
             Avtorizacia.Text = "Avtorizacia";
             Avtorizacia.UseVisualStyleBackColor = false;
@@ -240,13 +239,14 @@
             // 
             // btAdmin
             // 
-            btAdmin.BackColor = SystemColors.AppWorkspace;
-            btAdmin.Dock = DockStyle.Top;
-            btAdmin.Font = new Font("Stencil", 12F);
-            btAdmin.ForeColor = SystemColors.ActiveCaptionText;
+            btAdmin.BackColor = SystemColors.ControlDarkDark;
+            btAdmin.FlatAppearance.BorderSize = 0;
+            btAdmin.FlatStyle = FlatStyle.Flat;
+            btAdmin.Font = new Font("Microsoft Sans Serif", 12F);
+            btAdmin.ForeColor = Color.White;
             btAdmin.Location = new Point(0, 0);
             btAdmin.Name = "btAdmin";
-            btAdmin.Size = new Size(142, 25);
+            btAdmin.Size = new Size(140, 30);
             btAdmin.TabIndex = 0;
             btAdmin.Text = "Admin";
             btAdmin.UseVisualStyleBackColor = false;
@@ -274,9 +274,11 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 35);
             panel2.TabIndex = 2;
+            panel2.MouseDown += panelTop_MouseDown;
             // 
             // bt_min
             // 
+            bt_min.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             bt_min.BackColor = Color.Transparent;
             bt_min.BackgroundImage = Properties.Resources.MinB;
             bt_min.BackgroundImageLayout = ImageLayout.Zoom;
@@ -295,10 +297,10 @@
             // 
             // bt_max
             // 
+            bt_max.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             bt_max.BackColor = Color.Transparent;
             bt_max.BackgroundImage = Properties.Resources.MaxB;
             bt_max.BackgroundImageLayout = ImageLayout.Zoom;
-            bt_max.Dock = DockStyle.Right;
             bt_max.FlatAppearance.BorderSize = 0;
             bt_max.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
             bt_max.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
@@ -314,10 +316,10 @@
             // 
             // bt_exit
             // 
+            bt_exit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             bt_exit.BackColor = Color.Transparent;
             bt_exit.BackgroundImage = Properties.Resources.ExitB;
             bt_exit.BackgroundImageLayout = ImageLayout.Zoom;
-            bt_exit.Dock = DockStyle.Right;
             bt_exit.FlatAppearance.BorderSize = 0;
             bt_exit.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
             bt_exit.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
@@ -368,7 +370,6 @@
         private Button bt_add;
         private Button bt_edit;
         private Button bt_delete;
-        private Panel panel;
         private Panel panel2;
         private Button bt_min;
         private Button bt_max;

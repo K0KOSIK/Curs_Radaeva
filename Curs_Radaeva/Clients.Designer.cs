@@ -29,15 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
             TimeTable = new Button();
             Routes = new Button();
             Drivers = new Button();
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
-            btMin = new Button();
-            btMax = new Button();
-            btExit = new Button();
+            bt_min = new Button();
+            bt_max = new Button();
+            bt_exit = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -46,7 +45,6 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlDarkDark;
-            panel1.Controls.Add(panel2);
             panel1.Controls.Add(TimeTable);
             panel1.Controls.Add(Routes);
             panel1.Controls.Add(Drivers);
@@ -56,26 +54,16 @@
             panel1.Size = new Size(142, 415);
             panel1.TabIndex = 0;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(64, 64, 64);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.ForeColor = SystemColors.ActiveCaptionText;
-            panel2.Location = new Point(0, 86);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(142, 329);
-            panel2.TabIndex = 12;
-            panel2.Paint += panel2_Paint;
-            // 
             // TimeTable
             // 
-            TimeTable.BackColor = SystemColors.AppWorkspace;
-            TimeTable.Dock = DockStyle.Top;
-            TimeTable.Font = new Font("Stencil", 12F);
+            TimeTable.BackColor = SystemColors.ControlDarkDark;
+            TimeTable.FlatAppearance.BorderSize = 0;
+            TimeTable.FlatStyle = FlatStyle.Flat;
+            TimeTable.Font = new Font("Microsoft Sans Serif", 12F);
             TimeTable.ForeColor = SystemColors.ActiveCaptionText;
-            TimeTable.Location = new Point(0, 55);
+            TimeTable.Location = new Point(0, 63);
             TimeTable.Name = "TimeTable";
-            TimeTable.Size = new Size(142, 28);
+            TimeTable.Size = new Size(140, 30);
             TimeTable.TabIndex = 7;
             TimeTable.Text = "TimeTable";
             TimeTable.UseVisualStyleBackColor = false;
@@ -83,13 +71,14 @@
             // 
             // Routes
             // 
-            Routes.BackColor = SystemColors.AppWorkspace;
-            Routes.Dock = DockStyle.Top;
-            Routes.Font = new Font("Stencil", 12F);
+            Routes.BackColor = SystemColors.ControlDarkDark;
+            Routes.FlatAppearance.BorderSize = 0;
+            Routes.FlatStyle = FlatStyle.Flat;
+            Routes.Font = new Font("Microsoft Sans Serif", 12F);
             Routes.ForeColor = SystemColors.ActiveCaptionText;
-            Routes.Location = new Point(0, 25);
+            Routes.Location = new Point(0, 32);
             Routes.Name = "Routes";
-            Routes.Size = new Size(142, 30);
+            Routes.Size = new Size(140, 30);
             Routes.TabIndex = 5;
             Routes.Text = "Routes";
             Routes.UseVisualStyleBackColor = false;
@@ -97,13 +86,14 @@
             // 
             // Drivers
             // 
-            Drivers.BackColor = SystemColors.AppWorkspace;
-            Drivers.Dock = DockStyle.Top;
-            Drivers.Font = new Font("Stencil", 12F);
+            Drivers.BackColor = SystemColors.ControlDarkDark;
+            Drivers.FlatAppearance.BorderSize = 0;
+            Drivers.FlatStyle = FlatStyle.Flat;
+            Drivers.Font = new Font("Microsoft Sans Serif", 12F);
             Drivers.ForeColor = SystemColors.ActiveCaptionText;
-            Drivers.Location = new Point(0, 0);
+            Drivers.Location = new Point(0, 1);
             Drivers.Name = "Drivers";
-            Drivers.Size = new Size(142, 25);
+            Drivers.Size = new Size(140, 30);
             Drivers.TabIndex = 3;
             Drivers.Text = "Drivers";
             Drivers.UseVisualStyleBackColor = false;
@@ -111,7 +101,7 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = SystemColors.AppWorkspace;
+            dataGridView1.BackgroundColor = Color.FromArgb(250, 250, 250);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 35);
@@ -123,56 +113,74 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlDarkDark;
-            panel3.Controls.Add(btMin);
-            panel3.Controls.Add(btMax);
-            panel3.Controls.Add(btExit);
+            panel3.Controls.Add(bt_min);
+            panel3.Controls.Add(bt_max);
+            panel3.Controls.Add(bt_exit);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(800, 35);
             panel3.TabIndex = 2;
             // 
-            // btMin
+            // bt_min
             // 
-            btMin.BackColor = Color.LimeGreen;
-            btMin.Dock = DockStyle.Right;
-            btMin.FlatStyle = FlatStyle.Flat;
-            btMin.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
-            btMin.Location = new Point(695, 0);
-            btMin.Name = "btMin";
-            btMin.Size = new Size(35, 35);
-            btMin.TabIndex = 8;
-            btMin.UseVisualStyleBackColor = false;
-            btMin.Click += btMin_Click;
+            bt_min.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bt_min.BackColor = Color.Transparent;
+            bt_min.BackgroundImage = Properties.Resources.MinB;
+            bt_min.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_min.FlatAppearance.BorderSize = 0;
+            bt_min.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatStyle = FlatStyle.Flat;
+            bt_min.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_min.Location = new Point(693, 0);
+            bt_min.Margin = new Padding(4, 3, 4, 3);
+            bt_min.Name = "bt_min";
+            bt_min.Size = new Size(35, 35);
+            bt_min.TabIndex = 17;
+            bt_min.UseVisualStyleBackColor = false;
+            bt_min.Click += bt_Min_Click;
             // 
-            // btMax
+            // bt_max
             // 
-            btMax.BackColor = Color.SandyBrown;
-            btMax.Dock = DockStyle.Right;
-            btMax.FlatStyle = FlatStyle.Flat;
-            btMax.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btMax.Location = new Point(730, 0);
-            btMax.Name = "btMax";
-            btMax.Size = new Size(35, 35);
-            btMax.TabIndex = 7;
-            btMax.UseVisualStyleBackColor = false;
-            btMax.Click += btMax_Click;
+            bt_max.BackColor = Color.Transparent;
+            bt_max.BackgroundImage = Properties.Resources.MaxB;
+            bt_max.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_max.Dock = DockStyle.Right;
+            bt_max.FlatAppearance.BorderSize = 0;
+            bt_max.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatStyle = FlatStyle.Flat;
+            bt_max.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_max.Location = new Point(730, 0);
+            bt_max.Margin = new Padding(4, 3, 4, 3);
+            bt_max.Name = "bt_max";
+            bt_max.Size = new Size(35, 35);
+            bt_max.TabIndex = 16;
+            bt_max.UseVisualStyleBackColor = false;
+            bt_max.Click += bt_max_Click;
             // 
-            // btExit
+            // bt_exit
             // 
-            btExit.BackColor = Color.IndianRed;
-            btExit.Dock = DockStyle.Right;
-            btExit.FlatStyle = FlatStyle.Flat;
-            btExit.Font = new Font("Stencil", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btExit.ForeColor = SystemColors.ControlText;
-            btExit.Location = new Point(765, 0);
-            btExit.Name = "btExit";
-            btExit.Size = new Size(35, 35);
-            btExit.TabIndex = 6;
-            btExit.UseVisualStyleBackColor = false;
-            btExit.Click += btExit_Click;
+            bt_exit.BackColor = Color.Transparent;
+            bt_exit.BackgroundImage = Properties.Resources.ExitB;
+            bt_exit.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_exit.Dock = DockStyle.Right;
+            bt_exit.FlatAppearance.BorderSize = 0;
+            bt_exit.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatStyle = FlatStyle.Flat;
+            bt_exit.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_exit.ForeColor = SystemColors.ControlText;
+            bt_exit.Location = new Point(765, 0);
+            bt_exit.Margin = new Padding(4, 3, 4, 3);
+            bt_exit.Name = "bt_exit";
+            bt_exit.Size = new Size(35, 35);
+            bt_exit.TabIndex = 15;
+            bt_exit.UseVisualStyleBackColor = false;
+            bt_exit.Click += bt_exit_Click;
             // 
-            // Klients
+            // Clients
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -182,10 +190,9 @@
             Controls.Add(panel1);
             Controls.Add(panel3);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Klients";
+            Name = "Clients";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
-            FormClosing += Admin_FormClosing;
             Load += Klients_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -200,10 +207,9 @@
         private Button TimeTable;
         private Button Routes;
         private Button Drivers;
-        private Panel panel2;
         private Panel panel3;
-        private Button btMin;
-        private Button btMax;
-        private Button btExit;
+        private Button bt_min;
+        private Button bt_max;
+        private Button bt_exit;
     }
 }

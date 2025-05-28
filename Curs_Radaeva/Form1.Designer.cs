@@ -63,6 +63,7 @@
             textBox2.PlaceholderText = "Пароль";
             textBox2.Size = new Size(285, 35);
             textBox2.TabIndex = 2;
+            textBox2.KeyDown += textBox2_KeyDown;
             // 
             // Avtorises
             // 
@@ -92,6 +93,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 35);
             panel2.TabIndex = 6;
+            panel2.MouseDown += panelTop_MouseDown;
             // 
             // bt_min
             // 

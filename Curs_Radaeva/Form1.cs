@@ -2,6 +2,7 @@ using Curs_Radaeva.Models;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics.Metrics;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Curs_Radaeva
 {
@@ -10,7 +11,6 @@ namespace Curs_Radaeva
         public Avtorisation()
         {
             InitializeComponent();
-            textBox2.Focus();
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
@@ -66,6 +66,15 @@ namespace Curs_Radaeva
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
         private void Avtorisation_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -112,12 +121,18 @@ namespace Curs_Radaeva
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Неправильный логин или пароль:");
+                MessageBox.Show(ex.ToString());
                 Avtoris_role.Text = "Неправильный логин или пароль";
                 Avtoris_role.ForeColor = Color.IndianRed;
                 textBox1.Text = "";
                 textBox2.Text = "";
             }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Avtorises.PerformClick();
         }
     }
 }

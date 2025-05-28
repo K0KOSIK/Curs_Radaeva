@@ -100,6 +100,83 @@ namespace Curs_Radaeva
             x = activeEntity;
             ConfigureForm(entityData);
             isError = IsError.N;
+            foreach (Control control in panel1.Controls)
+            {
+                if (x == ActiveEntity.Admin)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data3" || 
+                        textBox.Name == "data4"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.Avtorizacium || x == ActiveEntity.Role || x == ActiveEntity.StatusDriver)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data4"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.Client)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data3" ||
+                        textBox.Name == "data5"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.Driver)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data3" || 
+                        textBox.Name == "data4" || textBox.Name == "data5" || textBox.Name == "data6"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.Route)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data4" ||
+                        textBox.Name == "data5"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.TimeTable)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+                if (x == ActiveEntity.Transport)
+                {
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name != "data2"))
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                        textBox.KeyDown += TextBox_KeyDown;
+                    }
+                }
+            }
+        }
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void ConfigureForm(object entityData)
