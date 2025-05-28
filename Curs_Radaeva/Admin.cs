@@ -468,7 +468,7 @@ namespace Curs_Radaeva
                         NameClient = "",
                         TelClient = 0,
                         DataRegisteredClient = DateOnly.FromDateTime(DateTime.Now),
-                        IdAvtorizacia = 0,
+                        IdAvtorizacia = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4].Value + 1,
                     };
                     this.Hide();
                     var editing = new Redact(ActiveEntity.Client, Client);
@@ -497,7 +497,7 @@ namespace Curs_Radaeva
                         LicenseNumberDrivers = 0,
                         TelDrivers = 0,
                         IdStatusDrivers = 0,
-                        IdAuthorization = 0,
+                        IdAuthorization = (int)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Value + 1,
                     };
                     this.Hide();
                     var editing = new Redact(ActiveEntity.Driver, Driver);

@@ -161,7 +161,7 @@ namespace Curs_Radaeva
                 }
                 if (x == ActiveEntity.Transport)
                 {
-                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name != "data2"))
+                    if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1"))
                     {
                         textBox.KeyPress += TextBox_KeyPress;
                         textBox.KeyDown += TextBox_KeyDown;
@@ -187,7 +187,14 @@ namespace Curs_Radaeva
         }
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (x == ActiveEntity.Transport)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -638,7 +645,7 @@ namespace Curs_Radaeva
                             Count = context8.Drivers.Count();
                             if (Convert.ToInt32(data4.Text) > Count || Convert.ToInt32(data4.Text) < 0)
                             {
-                                MessageBox.Show("IdTransport не может быть меньше нуля или больше:" + Count);
+                                MessageBox.Show("IdDrivers не может быть меньше нуля или больше:" + Count);
                                 isError = IsError.Y;
                                 return;
                             }
