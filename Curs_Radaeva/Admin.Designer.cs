@@ -32,7 +32,7 @@
             bt_delete = new Button();
             bt_edit = new Button();
             bt_add = new Button();
-            panel2 = new Panel();
+            panel = new Panel();
             Transport = new Button();
             TimeTable = new Button();
             StatusDrivers = new Button();
@@ -43,13 +43,13 @@
             Avtorizacia = new Button();
             btAdmin = new Button();
             dataGridView1 = new DataGridView();
-            panel3 = new Panel();
-            btMin = new Button();
-            btMax = new Button();
-            btExit = new Button();
+            panel2 = new Panel();
+            bt_min = new Button();
+            bt_max = new Button();
+            bt_exit = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -58,7 +58,7 @@
             panel1.Controls.Add(bt_delete);
             panel1.Controls.Add(bt_edit);
             panel1.Controls.Add(bt_add);
-            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(panel);
             panel1.Controls.Add(Transport);
             panel1.Controls.Add(TimeTable);
             panel1.Controls.Add(StatusDrivers);
@@ -116,16 +116,15 @@
             bt_add.UseVisualStyleBackColor = false;
             bt_add.Click += bt_add_Click;
             // 
-            // panel2
+            // panel
             // 
-            panel2.BackColor = Color.FromArgb(64, 64, 64);
-            panel2.Dock = DockStyle.Top;
-            panel2.ForeColor = SystemColors.ActiveCaptionText;
-            panel2.Location = new Point(0, 241);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(142, 94);
-            panel2.TabIndex = 12;
-            panel2.Paint += panel2_Paint;
+            panel.BackColor = Color.FromArgb(64, 64, 64);
+            panel.Dock = DockStyle.Top;
+            panel.ForeColor = SystemColors.ActiveCaptionText;
+            panel.Location = new Point(0, 241);
+            panel.Name = "panel";
+            panel.Size = new Size(142, 94);
+            panel.TabIndex = 12;
             // 
             // Transport
             // 
@@ -255,7 +254,7 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = SystemColors.AppWorkspace;
+            dataGridView1.BackgroundColor = Color.FromArgb(250, 250, 250);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 35);
@@ -264,76 +263,92 @@
             dataGridView1.Size = new Size(658, 415);
             dataGridView1.TabIndex = 1;
             // 
-            // panel3
+            // panel2
             // 
-            panel3.BackColor = SystemColors.ControlDarkDark;
-            panel3.Controls.Add(btMin);
-            panel3.Controls.Add(btMax);
-            panel3.Controls.Add(btExit);
-            panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(800, 35);
-            panel3.TabIndex = 2;
+            panel2.BackColor = SystemColors.ControlDarkDark;
+            panel2.Controls.Add(bt_min);
+            panel2.Controls.Add(bt_max);
+            panel2.Controls.Add(bt_exit);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(800, 35);
+            panel2.TabIndex = 2;
             // 
-            // btMin
+            // bt_min
             // 
-            btMin.BackColor = Color.LimeGreen;
-            btMin.Dock = DockStyle.Right;
-            btMin.FlatStyle = FlatStyle.Flat;
-            btMin.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
-            btMin.Location = new Point(695, 0);
-            btMin.Name = "btMin";
-            btMin.Size = new Size(35, 35);
-            btMin.TabIndex = 8;
-            btMin.UseVisualStyleBackColor = false;
-            btMin.Click += btMin_Click;
+            bt_min.BackColor = Color.Transparent;
+            bt_min.BackgroundImage = Properties.Resources.MinB;
+            bt_min.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_min.FlatAppearance.BorderSize = 0;
+            bt_min.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatStyle = FlatStyle.Flat;
+            bt_min.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_min.Location = new Point(693, 0);
+            bt_min.Margin = new Padding(4, 3, 4, 3);
+            bt_min.Name = "bt_min";
+            bt_min.Size = new Size(35, 35);
+            bt_min.TabIndex = 11;
+            bt_min.UseVisualStyleBackColor = false;
+            bt_min.Click += bt_Min_Click;
             // 
-            // btMax
+            // bt_max
             // 
-            btMax.BackColor = Color.SandyBrown;
-            btMax.Dock = DockStyle.Right;
-            btMax.FlatStyle = FlatStyle.Flat;
-            btMax.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btMax.Location = new Point(730, 0);
-            btMax.Name = "btMax";
-            btMax.Size = new Size(35, 35);
-            btMax.TabIndex = 7;
-            btMax.UseVisualStyleBackColor = false;
-            btMax.Click += btMax_Click;
+            bt_max.BackColor = Color.Transparent;
+            bt_max.BackgroundImage = Properties.Resources.MaxB;
+            bt_max.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_max.Dock = DockStyle.Right;
+            bt_max.FlatAppearance.BorderSize = 0;
+            bt_max.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatStyle = FlatStyle.Flat;
+            bt_max.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_max.Location = new Point(730, 0);
+            bt_max.Margin = new Padding(4, 3, 4, 3);
+            bt_max.Name = "bt_max";
+            bt_max.Size = new Size(35, 35);
+            bt_max.TabIndex = 10;
+            bt_max.UseVisualStyleBackColor = false;
+            bt_max.Click += bt_max_Click;
             // 
-            // btExit
+            // bt_exit
             // 
-            btExit.BackColor = Color.IndianRed;
-            btExit.Dock = DockStyle.Right;
-            btExit.FlatStyle = FlatStyle.Flat;
-            btExit.Font = new Font("Stencil", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btExit.ForeColor = SystemColors.ControlText;
-            btExit.Location = new Point(765, 0);
-            btExit.Name = "btExit";
-            btExit.Size = new Size(35, 35);
-            btExit.TabIndex = 6;
-            btExit.UseVisualStyleBackColor = false;
-            btExit.Click += btExit_Click;
+            bt_exit.BackColor = Color.Transparent;
+            bt_exit.BackgroundImage = Properties.Resources.ExitB;
+            bt_exit.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_exit.Dock = DockStyle.Right;
+            bt_exit.FlatAppearance.BorderSize = 0;
+            bt_exit.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatStyle = FlatStyle.Flat;
+            bt_exit.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_exit.ForeColor = SystemColors.ControlText;
+            bt_exit.Location = new Point(765, 0);
+            bt_exit.Margin = new Padding(4, 3, 4, 3);
+            bt_exit.Name = "bt_exit";
+            bt_exit.Size = new Size(35, 35);
+            bt_exit.TabIndex = 9;
+            bt_exit.UseVisualStyleBackColor = false;
+            bt_exit.Click += bt_exit_Click;
             // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.AppWorkspace;
+            BackColor = Color.FromArgb(237, 237, 237);
             ClientSize = new Size(800, 450);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
-            Controls.Add(panel3);
+            Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Admin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
-            FormClosing += Admin_FormClosing;
             Load += Admin_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panel3.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -353,10 +368,10 @@
         private Button bt_add;
         private Button bt_edit;
         private Button bt_delete;
+        private Panel panel;
         private Panel panel2;
-        private Panel panel3;
-        private Button btMin;
-        private Button btMax;
-        private Button btExit;
+        private Button bt_min;
+        private Button bt_max;
+        private Button bt_exit;
     }
 }

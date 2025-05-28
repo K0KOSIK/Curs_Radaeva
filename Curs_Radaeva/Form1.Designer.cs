@@ -30,63 +30,51 @@
         {
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            Login = new Label();
-            pasword = new Label();
             Avtorises = new Button();
             panel2 = new Panel();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            bt_min = new Button();
+            bt_max = new Button();
+            bt_exit = new Button();
             Avtoris_role = new Label();
+            panel1 = new Panel();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(333, 179);
+            textBox1.Font = new Font("Microsoft Sans Serif", 14.25F);
+            textBox1.Location = new Point(18, 16);
+            textBox1.Margin = new Padding(4, 3, 4, 3);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(135, 23);
+            textBox1.PlaceholderText = "Логин";
+            textBox1.Size = new Size(285, 35);
             textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(333, 240);
+            textBox2.Font = new Font("Microsoft Sans Serif", 14.25F);
+            textBox2.Location = new Point(18, 61);
+            textBox2.Margin = new Padding(4, 3, 4, 3);
+            textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(135, 23);
+            textBox2.PasswordChar = '•';
+            textBox2.PlaceholderText = "Пароль";
+            textBox2.Size = new Size(285, 35);
             textBox2.TabIndex = 2;
-            // 
-            // Login
-            // 
-            Login.AutoSize = true;
-            Login.Font = new Font("Microsoft Sans Serif", 14.25F);
-            Login.ForeColor = SystemColors.ActiveCaptionText;
-            Login.Location = new Point(333, 148);
-            Login.Name = "Login";
-            Login.Size = new Size(64, 24);
-            Login.TabIndex = 3;
-            Login.Text = "Логин";
-            Login.Click += Login_Click;
-            // 
-            // pasword
-            // 
-            pasword.AutoSize = true;
-            pasword.Font = new Font("Microsoft Sans Serif", 14.25F);
-            pasword.ForeColor = SystemColors.ActiveCaptionText;
-            pasword.Location = new Point(333, 209);
-            pasword.Name = "pasword";
-            pasword.Size = new Size(76, 24);
-            pasword.TabIndex = 4;
-            pasword.Text = "Пароль";
-            pasword.Click += label3_Click;
             // 
             // Avtorises
             // 
             Avtorises.BackColor = SystemColors.ControlDarkDark;
+            Avtorises.FlatAppearance.BorderSize = 0;
+            Avtorises.FlatStyle = FlatStyle.Flat;
             Avtorises.Font = new Font("Microsoft Sans Serif", 14.25F);
             Avtorises.ForeColor = SystemColors.ActiveCaptionText;
-            Avtorises.Location = new Point(333, 295);
+            Avtorises.Location = new Point(18, 151);
+            Avtorises.Margin = new Padding(4, 3, 4, 3);
             Avtorises.Name = "Avtorises";
-            Avtorises.Size = new Size(135, 35);
+            Avtorises.Size = new Size(285, 35);
             Avtorises.TabIndex = 5;
             Avtorises.Text = "Войти";
             Avtorises.UseVisualStyleBackColor = false;
@@ -95,94 +83,128 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlDarkDark;
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(bt_min);
+            panel2.Controls.Add(bt_max);
+            panel2.Controls.Add(bt_exit);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 35);
             panel2.TabIndex = 6;
             // 
-            // button3
+            // bt_min
             // 
-            button3.BackColor = Color.LimeGreen;
-            button3.Dock = DockStyle.Right;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
-            button3.Location = new Point(695, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(35, 35);
-            button3.TabIndex = 5;
-            button3.UseVisualStyleBackColor = false;
+            bt_min.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bt_min.BackColor = Color.Transparent;
+            bt_min.BackgroundImage = Properties.Resources.MinB;
+            bt_min.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_min.FlatAppearance.BorderSize = 0;
+            bt_min.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_min.FlatStyle = FlatStyle.Flat;
+            bt_min.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_min.Location = new Point(693, 0);
+            bt_min.Margin = new Padding(4, 3, 4, 3);
+            bt_min.Name = "bt_min";
+            bt_min.Size = new Size(35, 35);
+            bt_min.TabIndex = 5;
+            bt_min.UseVisualStyleBackColor = false;
+            bt_min.Click += bt_Min_Click;
             // 
-            // button2
+            // bt_max
             // 
-            button2.BackColor = Color.SandyBrown;
-            button2.Dock = DockStyle.Right;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            button2.Location = new Point(730, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(35, 35);
-            button2.TabIndex = 4;
-            button2.UseVisualStyleBackColor = false;
+            bt_max.BackColor = Color.Transparent;
+            bt_max.BackgroundImage = Properties.Resources.MaxB;
+            bt_max.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_max.Dock = DockStyle.Right;
+            bt_max.FlatAppearance.BorderSize = 0;
+            bt_max.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_max.FlatStyle = FlatStyle.Flat;
+            bt_max.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_max.Location = new Point(730, 0);
+            bt_max.Margin = new Padding(4, 3, 4, 3);
+            bt_max.Name = "bt_max";
+            bt_max.Size = new Size(35, 35);
+            bt_max.TabIndex = 4;
+            bt_max.UseVisualStyleBackColor = false;
+            bt_max.Click += bt_max_Click;
             // 
-            // button1
+            // bt_exit
             // 
-            button1.BackColor = Color.IndianRed;
-            button1.Dock = DockStyle.Right;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Stencil", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(765, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(35, 35);
-            button1.TabIndex = 3;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            bt_exit.BackColor = Color.Transparent;
+            bt_exit.BackgroundImage = Properties.Resources.ExitB;
+            bt_exit.BackgroundImageLayout = ImageLayout.Zoom;
+            bt_exit.Dock = DockStyle.Right;
+            bt_exit.FlatAppearance.BorderSize = 0;
+            bt_exit.FlatAppearance.MouseDownBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatAppearance.MouseOverBackColor = SystemColors.ControlDarkDark;
+            bt_exit.FlatStyle = FlatStyle.Flat;
+            bt_exit.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_exit.ForeColor = SystemColors.ControlText;
+            bt_exit.Location = new Point(765, 0);
+            bt_exit.Margin = new Padding(4, 3, 4, 3);
+            bt_exit.Name = "bt_exit";
+            bt_exit.Size = new Size(35, 35);
+            bt_exit.TabIndex = 3;
+            bt_exit.UseVisualStyleBackColor = false;
+            bt_exit.Click += bt_exit_Click;
             // 
             // Avtoris_role
             // 
-            Avtoris_role.Location = new Point(333, 270);
+            Avtoris_role.Font = new Font("Microsoft Sans Serif", 14.25F);
+            Avtoris_role.Location = new Point(18, 106);
+            Avtoris_role.Margin = new Padding(4, 0, 4, 0);
             Avtoris_role.Name = "Avtoris_role";
-            Avtoris_role.Size = new Size(135, 18);
+            Avtoris_role.Size = new Size(285, 35);
             Avtoris_role.TabIndex = 7;
             Avtoris_role.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(250, 250, 250);
+            panel1.Controls.Add(Avtoris_role);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(Avtorises);
+            panel1.Controls.Add(textBox2);
+            panel1.Location = new Point(241, 123);
+            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(317, 203);
+            panel1.TabIndex = 8;
             // 
             // Avtorisation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.AppWorkspace;
+            BackColor = Color.FromArgb(237, 237, 237);
             ClientSize = new Size(800, 450);
-            Controls.Add(Avtoris_role);
             Controls.Add(panel2);
-            Controls.Add(Avtorises);
-            Controls.Add(pasword);
-            Controls.Add(Login);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(panel1);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 3, 4, 3);
             Name = "Avtorisation";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Avtorisation";
             FormClosing += Avtorisation_FormClosing;
             panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private TextBox textBox1;
         private TextBox textBox2;
-        private Label Login;
-        private Label pasword;
         private Button Avtorises;
         private Panel panel2;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button bt_min;
+        private Button bt_max;
+        private Button bt_exit;
         private Label Avtoris_role;
+        private Panel panel1;
     }
 }

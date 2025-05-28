@@ -345,7 +345,7 @@ namespace Curs_Radaeva
                         Admin.NameAdmin = data2.Text;
                         Admin.TelAdmin = (long)Convert.ToDouble(data3.Text);
                         Ispr2525RadaevaVaKursachContext context10 = new();
-                        Count = context10.Roles.Count();
+                        Count = context10.Authorizations.Count();
                         if (Convert.ToInt32(data4.Text) < 0 || Convert.ToInt32(data4.Text) > Count)
                         {
                             MessageBox.Show("IdAuthorization не может быть меньше нуля или больше:" + Count);

@@ -10,25 +10,66 @@ namespace Curs_Radaeva
         public Avtorisation()
         {
             InitializeComponent();
+            textBox2.Focus();
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            foreach (Control control in panel2.Controls)
+            {
+                if (control is System.Windows.Forms.Button button &&
+                    (button.Name == "bt_max" || button.Name == "bt_min" || button.Name == "bt_exit"))
+                {
+                    button.MouseEnter += Button_MouseEnter;
+                    button.MouseLeave += Button_MouseLeave;
+                }
+
+            }
+        }
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == bt_exit)
+                bt_exit.BackgroundImage = Properties.Resources.ExitR;
+            if (button == bt_min)
+                bt_min.BackgroundImage = Properties.Resources.MinO;
+            if (button == bt_max)
+                bt_max.BackgroundImage = Properties.Resources.MaxG;
+        }
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == bt_exit)
+                bt_exit.BackgroundImage = Properties.Resources.ExitB;
+            if (button == bt_min)
+                bt_min.BackgroundImage = Properties.Resources.MinB;
+            if (button == bt_max)
+                bt_max.BackgroundImage = Properties.Resources.MaxB;
+        }
+        private void bt_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bt_max_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+        private void bt_Min_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
         private void Avtorisation_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-        private void Login_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void Avtorises_Click(object sender, EventArgs e)
         {
             try
@@ -67,6 +108,7 @@ namespace Curs_Radaeva
                 this.Hide();
                 textBox1.Text = "";
                 textBox2.Text = "";
+                Avtoris_role.Text = "";
             }
             catch (Exception ex)
             {
@@ -76,16 +118,6 @@ namespace Curs_Radaeva
                 textBox1.Text = "";
                 textBox2.Text = "";
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

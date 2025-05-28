@@ -24,6 +24,56 @@ namespace Curs_Radaeva
             InitializeComponent();
             this.FormClosed += Admin_FormClosed;
             _form1 = form1;
+            foreach (Control control in panel2.Controls)
+            {
+                if (control is System.Windows.Forms.Button button &&
+                    (button.Name == "bt_max" || button.Name == "bt_min" || button.Name == "bt_exit"))
+                {
+                    button.MouseEnter += Button_MouseEnter;
+                    button.MouseLeave += Button_MouseLeave;
+                }
+
+            }
+        }
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == bt_exit)
+                bt_exit.BackgroundImage = Properties.Resources.ExitR;
+            if (button == bt_min)
+                bt_min.BackgroundImage = Properties.Resources.MinO;
+            if (button == bt_max)
+                bt_max.BackgroundImage = Properties.Resources.MaxG;
+        }
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == bt_exit)
+                bt_exit.BackgroundImage = Properties.Resources.ExitB;
+            if (button == bt_min)
+                bt_min.BackgroundImage = Properties.Resources.MinB;
+            if (button == bt_max)
+                bt_max.BackgroundImage = Properties.Resources.MaxB;
+        }
+        private void bt_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bt_max_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+        private void bt_Min_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
         private void Admin_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -1141,38 +1191,6 @@ namespace Curs_Radaeva
                 }
 
             }
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Admin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void btExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btMax_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Normal)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-
-        private void btMin_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
