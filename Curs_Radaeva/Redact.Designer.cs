@@ -165,8 +165,10 @@
             // 
             // save
             // 
-            save.BackColor = SystemColors.AppWorkspace;
-            save.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
+            save.BackColor = SystemColors.ControlDarkDark;
+            save.FlatAppearance.BorderSize = 0;
+            save.FlatStyle = FlatStyle.Flat;
+            save.Font = new Font("Microsoft Sans Serif", 12F);
             save.ForeColor = SystemColors.ButtonHighlight;
             save.Location = new Point(546, 391);
             save.Name = "save";
@@ -189,12 +191,14 @@
             // 
             // cancellation
             // 
-            cancellation.BackColor = SystemColors.AppWorkspace;
-            cancellation.Font = new Font("Stencil", 12F, FontStyle.Bold | FontStyle.Italic);
+            cancellation.BackColor = SystemColors.ControlDarkDark;
+            cancellation.FlatAppearance.BorderSize = 0;
+            cancellation.FlatStyle = FlatStyle.Flat;
+            cancellation.Font = new Font("Microsoft Sans Serif", 12F);
             cancellation.ForeColor = SystemColors.ButtonHighlight;
             cancellation.Location = new Point(670, 392);
             cancellation.Name = "cancellation";
-            cancellation.Size = new Size(118, 46);
+            cancellation.Size = new Size(118, 49);
             cancellation.TabIndex = 16;
             cancellation.Text = "ОТМЕНА";
             cancellation.UseVisualStyleBackColor = false;

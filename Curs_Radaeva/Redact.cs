@@ -102,6 +102,11 @@ namespace Curs_Radaeva
             isError = IsError.N;
             foreach (Control control in panel1.Controls)
             {
+                if (control is System.Windows.Forms.Button button)//&& (button.Name == "bt_max" || button.Name == "bt_min" || button.Name == "bt_exit"))
+                {
+                    button.MouseEnter += Button_MouseEnter;
+                    button.MouseLeave += Button_MouseLeave;
+                }
                 if (x == ActiveEntity.Admin)
                 {
                     if (control is System.Windows.Forms.TextBox textBox && (textBox.Name == "data1" || textBox.Name == "data3" || 
@@ -163,6 +168,22 @@ namespace Curs_Radaeva
                     }
                 }
             }
+        }
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == save)
+                save.ForeColor = Color.Lime;
+            if (button == cancellation)
+                cancellation.ForeColor = Color.Lime;
+        }
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            var button = sender as System.Windows.Forms.Button;
+            if (button == save)
+                save.ForeColor = Color.White;
+            if (button == cancellation)
+                cancellation.ForeColor = Color.White;
         }
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -716,6 +737,12 @@ namespace Curs_Radaeva
                 MessageBox.Show($"Ошибка: {ex.Message}");
                 ExceptionToFile.SaveExceptionToDesktop(ex);
             }
+            
+        }
+        public void ClearColor()
+        {
+            cancellation.ForeColor = Color.White;
+            save.ForeColor = Color.White;
         }
 
         private void cancellation_Click(object sender, EventArgs e)
@@ -766,7 +793,8 @@ namespace Curs_Radaeva
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
-
+            ClearColor();
+            cancellation.ForeColor = Color.Lime;
 
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
